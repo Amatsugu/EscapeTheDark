@@ -14,6 +14,7 @@ Player = function() {
 	this.mCamSpeed = 0;
 	this.curID = 0;
 	this.mTotalJumps = 0;
+	this.hasCollided = false;
 
 	
 	// Animation settings
@@ -36,6 +37,14 @@ Player.prototype = {
     	this.mOrigGround = this.mGroundHeight;
 		Player.superclass.setup.call(this, params);
 		this.SetupAnimations();
+		this.addChild(this.UILayer = new TGE.DisplayObjectContainer().setup({}));
+		this.mDebug = this.UILayer.addChild(new TGE.Text().setup({
+			x : 72,
+			y : 65,
+			text : "0",
+			font : "Tahoma 20px",
+			color : "green"
+		}));
 		return this;
 	},
 	
@@ -135,6 +144,12 @@ Player.prototype = {
 			}else
 				this.mCamSpeed = this.mHorizontalSpeed;
 		}
+		if(!this.hasCollided)
+			this.mGroundHeight = this.mOrigGround;
+		if(this.mPosition < this.mGroundHeight)
+		{
+			this.mPosition = this.mGroundHeight;
+		}
 		this.mPosition += this.mVerticalSpeed; //Use vertical speed to determine vertical position
 		this.mDistance += this.mCurSpeed; //use horizontal speed to determine distance traveled
 		this.mCamDist += this.mCamSpeed; //uses the camera's speed to determine the camera's X position
@@ -145,9 +160,38 @@ Player.prototype = {
 			this.mGame.PlayerHitObstacle("dark");
 			//this.markForRemoval();
 		}
-
 		this.worldX = this.mDistance; //Applys player X
 		this.worldY = this.mPosition; //Applys player Y
+		//this.mDebug.text = "x:" + this.mDistance;
+		
+		this.hasCollided = false;
+	},
+
+	checkCollision : function(oX,oY,ob, id)
+	{
+		var collisonPadX = 0;
+		var collisonPadY = 2;
+		var pX = this.mDistance - collisonPadX;
+		var pWideX = this.mDistance + 100 + collisonPadX;
+		var pY = this.mPosition + collisonPadY;
+		//this.mDebug.text = pX + "|" + oX;
+		//oX -=ob.width*2;
+		if(pX >= oX && pWideX <= oX + ob.width)
+		{
+			//console.log(oX + " " + pX);
+			if(pY <= oY)
+			{
+				this.mCurSpeed = -this.mCamSpeed;
+				this.mCamSpeed = this.mHorizontalSpeed;
+				//this.hasCollided = true;
+			}else
+			{
+				this.mGroundHeight = oY + collisonPadY;
+				//this.hasCollided = true;
+			}
+			this.hasCollided = true;
+		}
+		
 	},
 
 	FallBack : function(id, doesHang)
@@ -163,16 +207,15 @@ Player.prototype = {
 			this.PlayAnimation("hang");
 	},
 
-	SetGroundLevel : function(level, id)
+	setID : function(level, id)
 	{
 		if(id > this.curID)
 			this.curID = id;
-		if(id == this.curID)
-			this.mGroundHeight = level;
 	},
 
 	ResetGroundLevel : function(id)
 	{
+		console.log("reset ground level");
 		if(id > this.curID)
 			this.curID = id;
 		if(id == this.curID)

@@ -82,12 +82,11 @@ GameScreen.prototype = {
 		//Move Camera
 		TGE.Game.GetInstance().mCameraLocation.y = 180;
 		TGE.Game.GetInstance().mCameraLocation.x = this.mPlayer.mCamDist;
-		
 		// Update the distance and coin displays
 		this.distanceDisplay.text = Math.floor(this.mDistance).toString();
 		this.coinDisplay.text = Math.floor(this.mCoins).toString();
 		this.mDistance = this.mPlayer.mDistance/100;
-		
+		//this.mPlayer.hasCollided = false;
 		// Read & make level
 		this.ReadNextEvent(event.elapsedTime);
 		this.SpawnObstacles(event.elapsedTime);
@@ -240,7 +239,7 @@ GameScreen.prototype = {
 					}
 
 			}
-			this.mSpawnNextPos += (this.mObstacleFrequency+2);
+			this.mSpawnNextPos += (this.mObstacleFrequency);
 		}
 		// var playerX = this.mPlayer.worldX;
 		

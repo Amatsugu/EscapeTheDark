@@ -4,6 +4,7 @@ StationaryObstacle = function() {
 	this.reset = false;
 	this.type = "";
 	this.ID = 0;
+	this.mHeight = 0;
 	//Stuff you always need
 	StationaryObstacle.superclass.constructor.call(this);
 	this.addEventListener("update", this.DetectCollisions.bind(this));
@@ -33,6 +34,7 @@ StationaryObstacle.prototype = {
 			params.image = "Building_A";
 			//params.worldY = 400;
 			params.worldY = 10;
+			this.mHeight = 50;
 		}	
 		
 		//Buildig B
@@ -40,6 +42,7 @@ StationaryObstacle.prototype = {
 			params.image = "Building_B";
 			//params.worldY = 0;
 				params.worldY = 35;
+				this.mHeight = 100;
 		}
 
 		//Building C
@@ -47,10 +50,10 @@ StationaryObstacle.prototype = {
 			params.image = "Building_C";
 			//params.worldY = 0;
 				params.worldY = 85;
+				this.mHeight = 200;
 		}
 		
 	},
-
 
 	DetectCollisions : function(event) 
 	{
@@ -59,48 +62,11 @@ StationaryObstacle.prototype = {
 		var obstacleBounds = this.getBounds();
 		var player = this.mGame.GetPlayer();
 		var playerBounds = player.getBounds();
-		var pY = player.worldY;
-		var pX = player.worldX;
-		var oX = this.worldX-50;
-		var oY = this.worldY;
-		var pWideX = pX + playerBounds.width;
-		var pTallY = pY + playerBounds.height;
-		var oWideX = oX + obstacleBounds.width-50;
-		var oTallY = player.mOrigGround + obstacleBounds.height;
-		if(pX > oWideX && !this.reset && this.set)
-		{
-			player.ResetGroundLevel(this.ID);
-			this.reset = true;
-		}
-
-		if(pWideX > oX && pX <= oWideX)
-		{
-			if(pY > oTallY && !this.set && !this.reset)
-			{
-				player.SetGroundLevel(oTallY, this.ID);
-				this.set = true;
-			}
-			// if(pWideX > oX+playerBuffer && pY < oTallY)
-			// {
-			// 	player.SetGroundLevel(oTallY-1);
-			// 	this.set = true;
-			// }
-			//console.log(oX, pX)
-		}
-		// if((pX + pWideX*.5) > oWideX && !this.reset && this.set)
-		// {
-		// 	this.set = true;
-		// }
-		
-
-		if(pWideX >= oX - obstacleBuffer && pX < oX + obstacleBuffer && pY < oTallY - playerBuffer && !this.reset && !this.set)// && pWideX <= oX+obstacleBuffer)//(!this.set && !this.reset))
-		{
-			var doesHang = false;
-			if(pTallY - 20 < oTallY)
-				doesHang = true;
-			player.FallBack(this.ID, doesHang);
-		}
-
+		var pWideX = player.mDistance + playerBounds.width;
+		var oWideX = this.worldX+obstacleBounds.width/2;
+		var oX = this.worldX-obstacleBounds.width/2;
+		var oY = player.mOrigGround + obstacleBounds.height;
+		player.checkCollision(oX, oY, obstacleBounds, this.ID);
 	}
 
 

@@ -3,8 +3,8 @@
 var level = [
 
     {player_speed:0.01},
-    {jump_speed:12.5},
-    {gravity:.54},
+    {jump_speed:18},
+    {gravity:1},
 
     
     //Obstacles
@@ -12,7 +12,7 @@ var level = [
 
    {time:0,     event:"obstacle_frequency",     value:300},
 
-   {time:0,     event:"obstacle_pattern",     value:"12304023023420"},
+   {time:0,     event:"obstacle_pattern",     value:"1112304023023420"},
 
    {time:12,    event:"end_segment"},
 
