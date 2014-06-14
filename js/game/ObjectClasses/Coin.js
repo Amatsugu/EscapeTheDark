@@ -38,8 +38,8 @@ Coin.prototype = {
 		{
 			if(this.mIsAlien)
 			{
-				this.mGame.GetPlayer().mStopped = true;
-				this.mGame.PlayerHitObstacle("alien");
+				//this.mGame.GetPlayer().mStopped = true;
+				//this.mGame.PlayerHitObstacle("alien");
 				this.markForRemoval();	
 				// //Play background music
 				// TGE.Game.GetInstance().audioManager.Play({ 

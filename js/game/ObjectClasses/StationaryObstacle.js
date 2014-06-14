@@ -22,6 +22,11 @@ StationaryObstacle.prototype = {
 		this.ID = params.id;
 		StationaryObstacle.superclass.setup.call(this, params);
 		this.cullToViewport(false, false, false, true);
+		var player = this.mGame.GetPlayer();
+		var i = player.colliders.length;
+		//console.log(this.registrationX);
+		var collisionRect = new TGE.Rectangle(25+this.worldX-this.width/2, this.worldY-this.height/2, this.width, this.height-25);
+		player.colliders[i] = collisionRect;
 		return this;
 	},
 	
@@ -29,7 +34,7 @@ StationaryObstacle.prototype = {
 	{
 		//Building A
 		this.type = type;
-		console.log(params, type)
+		//console.log(params, type)
 		if (type == "1" || type == "4") {  				
 			params.image = "Building_A";
 			//params.worldY = 400;
@@ -66,7 +71,7 @@ StationaryObstacle.prototype = {
 		var oWideX = this.worldX+obstacleBounds.width/2;
 		var oX = this.worldX-obstacleBounds.width/2;
 		var oY = player.mOrigGround + obstacleBounds.height;
-		player.checkCollision(oX, oY, obstacleBounds, this.ID);
+		//player.checkCollision(oX, oY, obstacleBounds, this.ID);
 	}
 
 

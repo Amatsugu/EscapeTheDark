@@ -239,7 +239,7 @@ GameScreen.prototype = {
 					}
 
 			}
-			this.mSpawnNextPos += (this.mObstacleFrequency);
+			this.mSpawnNextPos += (this.mObstacleFrequency-1);
 		}
 		// var playerX = this.mPlayer.worldX;
 		
