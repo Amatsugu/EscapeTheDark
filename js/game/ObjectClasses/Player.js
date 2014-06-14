@@ -6,6 +6,7 @@ Player = function() {
 	this.mHorizontalSpeed = 0;
 	this.mJumpSpeed = 0;
 	this.mGravity = 0;
+	this.mAcceleration = 0;
 	this.mPosition = 0;
 	this.mDistance = 0;
 	this.mCamDist = 0;
@@ -184,8 +185,8 @@ Player.prototype = {
 		}
 		this.worldX = this.mDistance; //Applys player X
 		this.worldY = this.mPosition; //Applys player Y
-		//this.mDebug.text = "c:" + this.colliders.length;
-		
+		this.mDebug.text = "speed:" + this.mHorizontalSpeed;
+		this.mHorizontalSpeed += this.mAcceleration;
 		this.hasCollided = false;
 	},
 
@@ -299,16 +300,26 @@ Player.prototype = {
 	},
 
 
-	SetSpeed : function(speed) {
+	SetSpeed : function(speed)
+	{
 		this.mHorizontalSpeed = speed * this.mGame.width;
+		console.log("speed Set");
 		this.mCamSpeed = this.mHorizontalSpeed;
 	},
+
+	SetAccel : function(accel)
+	{
+		this.mAcceleration = accel;
+		console.log("accel set");
+	},
 	
-	SetJumpSpeed : function(jumpSpeed) {
+	SetJumpSpeed : function(jumpSpeed)
+	{
 		this.mJumpSpeed = jumpSpeed;
 	},
 	
-	SetGravity : function(gravity) {
+	SetGravity : function(gravity)
+	{
 		this.mGravity = gravity;
 	},
 	

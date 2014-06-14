@@ -78,7 +78,6 @@ GameScreen.prototype = {
 	Update : function(event) {
 
 		if (!this.mPlaying) return;
-		
 		//Move Camera
 		TGE.Game.GetInstance().mCameraLocation.y = 180;
 		TGE.Game.GetInstance().mCameraLocation.x = this.mPlayer.mCamDist;
@@ -111,7 +110,13 @@ GameScreen.prototype = {
 			else if (nextEvent.player_speed != null) {
 				this.mPlayer.SetSpeed(nextEvent.player_speed);
 				this.mEventIndex++;
-			} 
+			}
+
+			else if(nextEvent.acceleration != null)
+			{
+				this.mPlayer.SetAccel(nextEvent.acceleration);
+				this.mEventIndex++;
+			}
 			
 			// setting fall speed?
 			else if (nextEvent.jump_speed != null) {
