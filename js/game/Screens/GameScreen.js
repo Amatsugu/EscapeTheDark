@@ -80,7 +80,18 @@ GameScreen.prototype = {
 
 		if (!this.mPlaying) return;
 		if(this.isPaused)
+		{
+			var h = this.pauseText.height;
+			var tar = (this.height/2)-(h/2);
+			this.pauseText.y = this.Lerp(this.pauseText.y, tar, .1);
 			return;
+		}else
+		{
+			if(this.pauseText.y != -50)
+				this.pauseText.y = this.Lerp(this.pauseText.y, this.height+50, .1);
+			if(this.pauseText.y >= this.height+10)
+				this.pauseText.y = -50;
+		}
 			//Move Camera
 		TGE.Game.GetInstance().mCameraLocation.y = 180;
 		TGE.Game.GetInstance().mCameraLocation.x = this.mPlayer.mCamDist;
@@ -442,6 +453,16 @@ GameScreen.prototype = {
 	    	scaleX : 0.75,
 	    	scaleY : 0.75
 	    }));
+
+	    //Pause Text
+	    this.pauseText = this.UILayer.addChild(new TGE.Text().setup({
+			x : this.width/2,
+			y : -50,
+			text : "Game Paused",
+			font : "Tahoma 20px",
+			color : "white"
+		}));
+		this.pauseText.x = (this.width/2)-(this.pauseText.width/2);
 	    
 	},
 
@@ -515,6 +536,16 @@ GameScreen.prototype = {
 		{
 			this.mousedown = true;
 		}
+	},
+
+	Lerp : function(a, b, t)
+	{
+		return this.Round(a + (b - a)*t, 1000);
+	},
+
+	Round : function(n, d)
+	{
+		return Math.round(n*d)/d;
 	},
 
 }

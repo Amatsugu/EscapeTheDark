@@ -108,7 +108,7 @@ Player.prototype = {
 		//Jump
 		if(this.mGame.mousedown)//Gets Player Input
 		{
-			if(this.mVerticalSpeed == 0 && this.canJump)
+			if(this.canJump)
 			{
 				this.mVerticalSpeed = this.mJumpSpeed; //Apply Jump
 				this.PlayAnimation("fly");
@@ -325,8 +325,6 @@ Player.prototype = {
 	{
 		this.mGravity = gravity;
 	},
-	
-	
 }
 
 extend(Player, TGE.SpriteSheetAnimation); 
