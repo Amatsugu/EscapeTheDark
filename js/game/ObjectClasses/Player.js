@@ -17,6 +17,7 @@ Player = function() {
 	this.mTotalJumps = 0;
 	this.hasCollided = false;
 	this.colliders = new Array();
+	this.canJump = true;
 
 	
 	// Animation settings
@@ -49,6 +50,7 @@ Player.prototype = {
 			font : "Tahoma 20px",
 			color : "green"
 		}));
+		this.mDebug.text = "";
 		return this;
 	},
 	
@@ -95,16 +97,23 @@ Player.prototype = {
 	
 	UpdatePosition : function(event) 
 	{
-		
-		if (this.mStopped) return;
-	
+		if(this.mGame.isPaused)
+			return;
+		if (this.mStopped)
+		{
+			//this.StopAnimation();
+			this.markForRemoval();
+			return;
+		}
+		//Jump
 		if(this.mGame.mousedown)//Gets Player Input
 		{
-			if(this.mVerticalSpeed == 0)
+			if(this.mVerticalSpeed == 0 && this.canJump)
 			{
 				this.mVerticalSpeed = this.mJumpSpeed; //Apply Jump
 				this.PlayAnimation("fly");
 				this.mTotalJumps++;
+				this.canJump = false;
 			}
 		}
 
@@ -117,12 +126,6 @@ Player.prototype = {
 			this.PlayAnimation("run");
 			this.mPosition = this.mGroundHeight;
 		}
-
-		// if(this.mPosition > (this.mGame.height - this.currentAnim.height))//Prevents screen exit from top of screen
-		// {
-		// 	this.mVerticalSpeed = -(this.mGravity+2);
-		// 	this.mPosition = this.mGame.height - this.currentAnim.height;
-		// }
 
 		if(this.mCurSpeed < this.mHorizontalSpeed)//Accelerate to match intended speed
 		{
@@ -149,9 +152,6 @@ Player.prototype = {
 			}else
 				this.mCamSpeed = this.mHorizontalSpeed;
 		}
-		
-		//this.checkCollision();
-
 
 		if(this.mPosition < this.mGroundHeight)
 		{
@@ -165,23 +165,25 @@ Player.prototype = {
 		if(this.checkIntersection(playerRect))
 		{
 			this.mVerticalSpeed = 0;
+			this.canJump = true;
 			this.PlayAnimation("run");
 		}
 		var playerRect = new TGE.Rectangle(nX-this.width/2, this.mPosition-this.height/2, this.width, this.height);
 		if(this.checkIntersection(playerRect))
 		{
 			this.mCurSpeed = 0;
-			this.PlayAnimation("hang");
 		}
 		this.mPosition += this.mVerticalSpeed; //Use vertical speed to determine vertical position
 		this.mDistance += this.mCurSpeed; //use horizontal speed to determine distance traveled
 		this.mCamDist += this.mCamSpeed; //uses the camera's speed to determine the camera's X position
 
+		if(this.mPosition <= this.mGroundHeight)
+			this.canJump = true;
 		if(((this.mCamDist-2) - this.mGame.width/2) > this.mDistance) //Kill the player if he/she exits on screen left
 		{
 			this.mGame.GetPlayer().mStopped = true;
 			this.mGame.PlayerHitObstacle("dark");
-			//this.markForRemoval();
+			this.markForRemoval();
 		}
 		this.worldX = this.mDistance; //Applys player X
 		this.worldY = this.mPosition; //Applys player Y

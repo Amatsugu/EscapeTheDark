@@ -5,6 +5,7 @@ GameScreen = function(width, height) {
 	this.mDistance = 0;
 	this.mCoins = 0;
 	this.curID = 0;
+	this.isPaused = false;
 	
 	//Level stuff
 	this.mEventTimer = 0;
@@ -78,13 +79,17 @@ GameScreen.prototype = {
 	Update : function(event) {
 
 		if (!this.mPlaying) return;
-		//Move Camera
+		if(this.isPaused)
+			return;
+			//Move Camera
 		TGE.Game.GetInstance().mCameraLocation.y = 180;
 		TGE.Game.GetInstance().mCameraLocation.x = this.mPlayer.mCamDist;
 		// Update the distance and coin displays
 		this.distanceDisplay.text = Math.floor(this.mDistance).toString();
 		this.coinDisplay.text = Math.floor(this.mCoins).toString();
 		this.mDistance = this.mPlayer.mDistance/100;
+		this.distanceDisplay.x = this.width-10-this.distanceDisplay.width/2;
+		this.distanceUI.x = this.width - this.distanceDisplay.width - 30;
 		//this.mPlayer.hasCollided = false;
 		// Read & make level
 		this.ReadNextEvent(event.elapsedTime);
@@ -400,19 +405,21 @@ GameScreen.prototype = {
 		
 		
 		//Text that displays distance traveled
+		//console.log(this.width);
 		this.distanceDisplay = this.UILayer.addChild(new TGE.Text().setup({
-			x : 72,
-			y : 22,
+			x : this.width,
+			y : 30,
 			text : "0",
 			font : "Tahoma 20px",
 			color : "#green",
+			align : "right",
 			size : 16
 		}));
 		
 		//Feet icon that sits in front of the distance traveled number
-	    this.addChild(new TGE.Sprite().setup({
+	    this.distanceUI = this.UILayer.addChild(new TGE.Sprite().setup({
 	    	x : 25,
-	        y : 22,
+	        y : 30,
 	    	image : "distance_ui",
 	    	scaleX : 0.5,
 	    	scaleY : 0.5
@@ -421,7 +428,7 @@ GameScreen.prototype = {
 		//Text that displays coins collected
 		this.coinDisplay = this.UILayer.addChild(new TGE.Text().setup({
 			x : 72,
-			y : 65,
+			y : 30,
 			text : "0",
 			font : "Tahoma 20px",
 			color : "green"
@@ -430,7 +437,7 @@ GameScreen.prototype = {
 		//Coin icon that sits in front of the coins collected number
 	    this.addChild(new TGE.Sprite().setup({
 	    	x : 25,
-	        y : 65,
+	        y : 30,
 	    	image : "coin",
 	    	scaleX : 0.75,
 	    	scaleY : 0.75

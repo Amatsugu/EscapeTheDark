@@ -4,7 +4,7 @@ var level = [
 
     {player_speed:0.01},
     {acceleration:0.001},
-    {jump_speed:18},
+    {jump_speed:21},
     {gravity:1},
 
     
