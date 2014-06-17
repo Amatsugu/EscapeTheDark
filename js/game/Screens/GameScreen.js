@@ -31,7 +31,7 @@ GameScreen = function(width, height) {
 	// Event listeners
 	this.addEventListener("update", this.Update.bind(this));
 	this.addEventListener("mousedown", this.MouseDown.bind(this));
-	this.addEventListener("mouseup", this.MouseUp.bind(this));
+	this.addEventListener("keydown", this.KeyInput.bind(this));
 };
 
 GameScreen.prototype = {
@@ -491,10 +491,31 @@ GameScreen.prototype = {
 		else return Math.floor(((this.mDistance * this.mCoins)));//+this.mTotalJumps);
 	},
 	
-	IncPlayerDistance : function(pixels) { this.mDistance += pixels / 100; },
-	GetPlayer : function() { return this.mPlayer; },
-	MouseDown : function() { this.mousedown = true; },
-	MouseUp : function() { this.mousedown = false; },
+	IncPlayerDistance : function(pixels) 
+	{
+		this.mDistance += pixels / 100; 
+	},
+
+	GetPlayer : function() 
+	{
+		return this.mPlayer; 
+	},
+
+	MouseDown : function() 
+	{
+		this.mousedown = true; 
+	},
+
+	KeyInput : function(event)
+	{
+		if(event.keyCode == 27)
+		{
+			this.isPaused = !this.isPaused;
+		}else if(event.keyCode == 32)
+		{
+			this.mousedown = true;
+		}
+	},
 
 }
 extend(GameScreen, TGE.Window);

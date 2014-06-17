@@ -190,6 +190,7 @@ Player.prototype = {
 		this.mDebug.text = "speed:" + this.mHorizontalSpeed;
 		this.mHorizontalSpeed += this.mAcceleration;
 		this.hasCollided = false;
+		this.mGame.mousedown = false;
 	},
 
 	checkCollision : function(oX,oY,ob, id)
