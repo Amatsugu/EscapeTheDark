@@ -35,7 +35,7 @@ StationaryObstacle.prototype = {
 		//Building A
 		this.type = type;
 		//console.log(params, type)
-		if (type == "1" || type == "4") {  				
+		if (type == 1 || type == 4) {  				
 			params.image = "Building_A";
 			//params.worldY = 400;
 			params.worldY = 10;
@@ -43,7 +43,7 @@ StationaryObstacle.prototype = {
 		}	
 		
 		//Buildig B
-		else if (type == "2" || type == "5") {  		
+		else if (type == 2 || type == 5) {  		
 			params.image = "Building_B";
 			//params.worldY = 0;
 				params.worldY = 35;
@@ -51,7 +51,7 @@ StationaryObstacle.prototype = {
 		}
 
 		//Building C
-		else if (type == "3" || type == "6") {  		
+		else if (type == 3 || type == 6) {  		
 			params.image = "Building_C";
 			//params.worldY = 0;
 				params.worldY = 85;

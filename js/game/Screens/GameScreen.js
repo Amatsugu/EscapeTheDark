@@ -11,7 +11,6 @@ GameScreen = function(width, height) {
 	this.mEventTimer = 0;
 	this.mEventIndex = 0;
 	this.mLastCoin = 0;
-	this.mLastObstacle = 0;
 	this.mPlaying = true;
 	this.mSpawnNextPos = 5;
 	this.mDarkness;
@@ -24,9 +23,8 @@ GameScreen = function(width, height) {
 	this.mCoinWaveTimer = 0;
 
 	//Obstacle generation parameters
-	this.mObstacleFrequency = 0;
-	this.mObstaclePattern = "";
-	this.mObstaclePatternIndex = 0;
+	this.mLastObstacle = 0;
+	this.alienSpawnChance = 3;
 		
 	// Event listeners
 	this.addEventListener("update", this.Update.bind(this));
@@ -104,7 +102,8 @@ GameScreen.prototype = {
 		//this.mPlayer.hasCollided = false;
 		// Read & make level
 		this.ReadNextEvent(event.elapsedTime);
-		this.SpawnObstacles(event.elapsedTime);
+		//this.SpawnObstacles(event.elapsedTime);
+		this.GenerateRandom(event.elapsedTime);
 		this.SpawnCoins(event.elapsedTime);
 	},
 	
@@ -140,7 +139,13 @@ GameScreen.prototype = {
 				this.mEventIndex++;
 			}
 			
-			// setting boost speed?
+			//setting elien spawnrate
+			else if(nextEvent.alienSpawnChance != null)
+			{
+				this.alienSpawnChance = nextEvent.alienSpawnChance;
+				this.mEventIndex++;
+			}
+			// setting gravity?
 			else if (nextEvent.gravity != null) {
 				this.mPlayer.SetGravity(nextEvent.gravity);
 				this.mEventIndex++;
@@ -171,22 +176,9 @@ GameScreen.prototype = {
 		            this.GenerateCoinBox(nextEvent.size);
 		        }
 				
-				// setting the obstacle frequency?
-				else if (nextEvent.event == "obstacle_frequency") {
-					this.mObstacleFrequency = nextEvent.value;
-					this.mLastObstacle = this.mPlayer.worldX;
-				}
-				
-				// feeding in an obstacle pattern?
-				else if (nextEvent.event == "obstacle_pattern") {
-					this.mObstaclePattern = nextEvent.value;
-					this.mObstaclePatternIndex = 0;
-				}
-				
 				// displaying nothing?
 				else if (nextEvent.event == "nothing") {
 					this.mCoinFrequency = 0;
-					this.mObstacleFrequency = 0;
 				}
 				
 				// ending game?
@@ -200,25 +192,28 @@ GameScreen.prototype = {
 		}
 	},
 
-	SpawnObstacles : function(elapsedTime) 
+	GenerateRandom : function(elapsedTime)
 	{
 		var spawnRange = this.mPlayer.mCamDist + this.width;
-		var typeNum = "";
-
-		
-		// Determine type of obstacle
-
 		if(spawnRange >= this.mSpawnNextPos)
 		{
-			if(this.mObstaclePatternIndex == 0)
-				this.mSpawnNextPos = spawnRange + 100;
-			if (this.mObstaclePattern.charAt(this.mObstaclePatternIndex) != "X") 
+			var typeNum = -1;
+			if(this.mLastObstacle % 3 == 0)
 			{
-				typeNum = this.mObstaclePattern.charAt(this.mObstaclePatternIndex);
-				//console.log(this.mObstaclePatternIndex);
-				this.mObstaclePatternIndex++;
+				typeNum = this.RandomRange(0,2);
 			}
-			if (typeNum != "" && typeNum != "0") 
+			else
+			{
+				typeNum = this.RandomRange(0,3);
+			}
+			if(this.RandomRange(0,3) == 0 && this.mLastObstacle <= 3)
+			{
+				typeNum += 2;
+				if(typeNum > 6)
+					typeNum = 0;
+			}
+			this.mLastObstacle = typeNum;
+			if (typeNum != -1 && typeNum != 0) 
 			{	
 
 					this.obstacleLayer.addChild(new StationaryObstacle().setup({
@@ -228,13 +223,13 @@ GameScreen.prototype = {
 						gameScreen : this
 					}));
 					this.curID++;
-					if(typeNum == "4" || typeNum == "5" || typeNum == "6")
+					if(typeNum == 4 || typeNum == 5 || typeNum == 6)
 					{
-						if(typeNum == "4")
+						if(typeNum == 4)
 							pos = this.mPlayer.mOrigGround + 50;
-						else if(typeNum == "5")
+						else if(typeNum == 5)
 							pos = this.mPlayer.mOrigGround + 100;
-						else if(typeNum == "6")
+						else if(typeNum == 6)
 							pos = this.mPlayer.mOrigGround + 200;
 						
 						this.coinLayer.addChild(new Coin().setup({
@@ -245,11 +240,11 @@ GameScreen.prototype = {
 						}));
 					}else
 					{
-						if(typeNum == "1")
+						if(typeNum == 1)
 							pos = this.mPlayer.mOrigGround + 50;
-						else if(typeNum == "2")
+						else if(typeNum == 2)
 							pos = this.mPlayer.mOrigGround + 100;
-						else if(typeNum == "3")
+						else if(typeNum == 3)
 							pos = this.mPlayer.mOrigGround + 200;
 						this.coinLayer.addChild(new Coin().setup({
 							worldX : this.mSpawnNextPos,
@@ -260,50 +255,13 @@ GameScreen.prototype = {
 					}
 
 			}
-			this.mSpawnNextPos += (this.mObstacleFrequency-1);
+			this.mSpawnNextPos += 300;
 		}
-		// var playerX = this.mPlayer.worldX;
-		
-		// if (this.mObstacleFrequency == 0) {
-		// 	this.mLastObstacle = playerX;
-		// } 
-		
-		// // If it's time for another obstacle
-		// if ((this.mPlayer.worldX - this.mLastObstacle) > this.mObstacleFrequency) {
+	},
 
-		// 	var typeNum = -1;
-		// 	var typeChar = "";
-			
-		// 	// Determine type of obstacle
-		// 	if (this.mObstaclePattern.charAt(this.mObstaclePatternIndex) != "X") {
-				
-		// 		typeNum = this.mObstaclePattern.charCodeAt(this.mObstaclePatternIndex) - 48;
-		// 		typeChar = this.mObstaclePattern.charAt(this.mObstaclePatternIndex);
-		// 		this.mObstaclePatternIndex++;
-		// 	}
-
-		// 	if (typeNum > 0) {
-				
-		// 		// If its a number, spawn a stationary obstacle
-		// 		if (typeNum <= 9) {
-		// 			this.obstacleLayer.addChild(new StationaryObstacle().setup({
-		// 				worldX : this.mPlayer.worldX + this.percentageOfWidth(1) * 7,
-		// 				type : typeNum,
-		// 				gameScreen : this
-		// 			}));
-		// 		} 
-				
-		// 		// If its a letter, spawn a moving obstacle
-		// 		else {
-		// 			this.obstacleLayer.addChild(new MovingObstacle().setup({
-  //                       ox : this.mPlayer.worldX + this.percentageOfWidth(1) * 2,
-  //                       type : typeChar,
-  //                       gameScreen : this
-  //                   }));
-		// 		}
-		// 	}
-
-		// 	this.mLastObstacle = this.mPlayer.worldX;
+	RandomRange : function(min,max)
+	{
+		return Math.floor(Math.random() * (max - min + 1)) + min;
 	},
 
 	SpawnCoins : function(elapsedTime) {

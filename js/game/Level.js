@@ -6,46 +6,18 @@ var level = [
     {acceleration:0.001},
     {jump_speed:21},
     {gravity:1},
+    {alienSpawnChance:5},//1 in how many chance for an enemy to spawn
 
     
-    //Obstacles
-    {begin_segment:"Some Obstacles"},
 
-   {time:0,     event:"obstacle_frequency",     value:300},
+   // Coins
+    {begin_segment:"Coin Line"},
 
-   {time:0,     event:"obstacle_pattern",     value:"1112304023023420"},
+    {time:0,     event:"coin_y",         value:0.75},
 
-   {time:12,    event:"end_segment"},
+    {time:2,     event:"coin_frequency", value:200},
 
-   {begin_segment:"Some Obstacles2"},
-
-   {time:0,     event:"obstacle_frequency",     value:300},
-
-   {time:0,     event:"obstacle_pattern",     value:"023013021304"},
-
-   {time:12,    event:"end_segment"},
-
-
-
-    //Coins
-    // {begin_segment:"Coin Line"},
-
-    // {time:0,     event:"coin_y",         value:0.75},
-
-    // {time:2,     event:"coin_frequency", value:200},
-
-    // {time:3,     event:"end_segment"},
-
-
-    //Obstacle
-    {begin_segment:"An Obstacle"},
-
-    {time:0,     event:"obstacle_frequency",     value:300},
-
-    {time:0,     event:"obstacle_pattern",     value:"102353043202363"},
-
-    {time:12,     event:"end_segment"},
-
+    {time:3,     event:"end_segment"},
 
     //Coin Boxes
     {begin_segment:"Coin Boxes"},
@@ -60,42 +32,20 @@ var level = [
 
     {time: 6,    event:"end_segment"}, 
 
+    //Coin Sinewave
+    {begin_segment:"A Coin Sinewave"},
 
-    //Obstacle
-    {begin_segment:"Some More Obstacles"},
+    {time:0,     event:"coin_frequency",     value:0},
 
-    {time:0,     event:"obstacle_frequency",     value:300},
+    {time:0,     event:"coin_frequency",     value:200},
 
-    {time:0,     event:"obstacle_pattern",     value:"1023532040142"},
+    {time:0,     event:"coin_height",     value:0.5},
 
-    {time:12,     event:"end_segment"},
+    {time:0,     event:"coin_sinewave",     frequency:4, amplitude:100},
 
-
-   //  //Coin Sinewave
-   //  {begin_segment:"A Coin Sinewave"},
-
-   //  {time:0,     event:"coin_frequency",     value:0},
-
-   // {time:0,     event:"coin_frequency",     value:200},
-
-   // {time:0,     event:"coin_height",     value:0.5},
-
-   //  {time:0,     event:"coin_sinewave",     frequency:4, amplitude:100},
-
-   //  {time:4,    event:"end_segment"},
-
-
-    //Obstacles
-    {begin_segment:"Even More Obstacles"},
-
-   {time:0,     event:"obstacle_frequency",     value:300},
-
-   {time:0,     event:"obstacle_pattern",     value:"12300123"},
-
-   {time:20,    event:"end_segment"},
-
+    {time:4,    event:"end_segment"},
 
     // The End
-    {begin_segment:"END"},
-    {time:5,     event:"game_finished"}
+   // {begin_segment:"END"},
+   // {time:5,     event:"game_finished"}
 ];
