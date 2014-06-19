@@ -18,6 +18,7 @@ Runner = function()
         
         //Coins
         {id:'coin',   					url:'coin.png'},
+        {id:'coinAnim',                     url:'coinAnim.png'},
         
         
         //Player pieces

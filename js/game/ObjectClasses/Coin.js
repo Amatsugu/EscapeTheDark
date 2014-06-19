@@ -4,6 +4,7 @@ Coin = function()
 	//Coin settings
 	this.mPickedUp = false;
 	this.mIsAlien = false;
+	this.animArray = [];
 
 	//Boring stuff
     Coin.superclass.constructor.call(this);
@@ -19,14 +20,56 @@ Coin.prototype = {
 	setup : function(params) 
 	{
 		if(params.isAlien)
-			params.image = "ufo";
+		{
+			//params.image = "ufo";
+			this.animArray["ufo"] = this.addChild(new TGE.SpriteSheetAnimation().setup({
+				image : "ufo",
+				rows : 1,
+				columns : 1,
+				totalFrames : 1,
+				fps : 1,
+				looping : false,
+				visible : false
+			}));
+			this.PlayAnimation("ufo");
+		}
 		else
-			params.image = "coin";
+		{
+			//params.image = "coin";
+			this.animArray["glow"] = this.addChild(new TGE.SpriteSheetAnimation().setup({
+				image : "coinAnim",
+				rows : 1,
+				columns : 4,
+				totalFrames : 4,
+				fps : 10,
+				looping : true,
+				visible : false
+			}));
+			this.PlayAnimation("glow");
+		}
 		this.mIsAlien = params.isAlien;
     	this.mGame = params.gameScreen;
     	Coin.superclass.setup.call(this,params);
     	this.cullToViewport(false,false,false,true);
     	return this;
+	},
+
+	PlayAnimation : function(name) 
+	{
+    
+	    // If it's already started playing, don't start it again
+	    if (this.currentAnim == this.animArray[name]) return;
+		
+		// Stop playing old animation if there is one
+		if (this.currentAnim != null) {
+			this.currentAnim.visible = false;
+			this.currentAnim.gotoAndStop(0);
+		}
+		
+		// Start playing next animation
+		this.currentAnim = this.animArray[name];
+		this.currentAnim.visible = true;
+		this.currentAnim.gotoAndPlay(0);
 	},
 
 
@@ -74,4 +117,4 @@ Coin.prototype = {
 	
 }
 
-extend(Coin, TGE.Sprite);
+extend(Coin, TGE.SpriteSheetAnimation);

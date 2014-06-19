@@ -98,7 +98,7 @@ GameScreen.prototype = {
 		this.coinDisplay.text = Math.floor(this.mCoins).toString();
 		this.mDistance = this.mPlayer.mDistance/100;
 		this.distanceDisplay.x = this.width-10-this.distanceDisplay.width/2;
-		this.distanceUI.x = this.width - this.distanceDisplay.width - 30;
+		this.distanceUI.x = this.width -(this.distanceUI.width/2) -  this.distanceDisplay.width + 30;
 		//this.mPlayer.hasCollided = false;
 		// Read & make level
 		this.ReadNextEvent(event.elapsedTime);
@@ -388,7 +388,7 @@ GameScreen.prototype = {
 		//Feet icon that sits in front of the distance traveled number
 	    this.distanceUI = this.UILayer.addChild(new TGE.Sprite().setup({
 	    	x : 25,
-	        y : 30,
+	        y : 25,
 	    	image : "distance_ui",
 	    	scaleX : 0.5,
 	    	scaleY : 0.5

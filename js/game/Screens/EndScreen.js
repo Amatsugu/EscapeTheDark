@@ -16,59 +16,56 @@ EndScreen.prototype = {
 
 	setup : function(params) {
 		EndScreen.superclass.setup.call(this, params);
-        if(params.death == "alien")
-        {
-            this.addChild(new TGE.Sprite().setup({
+        this.addChild(new TGE.Sprite().setup({
                 x : this.percentageOfWidth(0.5),
                 y : this.percentageOfHeight(0.5),
                 image: "endscreen_background",
             }));
+        if(params.death == "alien")
+        {
+            
         }else
         {
-            this.addChild(new TGE.Sprite().setup({
-                x : this.percentageOfWidth(0.5),
-                y : this.percentageOfHeight(0.5),
-                image: "endscreen_background2",
-            }));
+            
         }
 
         // Try Again button
         this.addChild(new TGE.Button().setup({
-            x : this.percentageOfWidth(0.8),
-            y : this.percentageOfHeight(0.81),
+            x : 765,
+            y : 400,
             image: "playagain_button",
             pressFunction : this.PlayAgain.bind(this),
         }));
 
         // Display distance traveled
         this.addChild(this.distanceDisplay = new TGE.Text().setup({
-            x : this.percentageOfWidth(0.9),
-            y : this.percentageOfHeight(0.09),
+            x : 875,
+            y : 48,
             color: "red",
             font : "Tahoma 10px",
         }));
         
         // Display coins earned
         this.addChild(this.coinDisplay = new TGE.Text().setup({
-            x : this.percentageOfWidth(0.9),
-            y : this.percentageOfHeight(0.16),
+            x : 875,
+            y : 92,
             color: "yellow",
             font : "Tahoma 10px",
         }));
 
-        // Display Times
+        // Display Times jumped
         this.addChild(this.jumpsDisplay = new TGE.Text().setup({
-            x : this.percentageOfWidth(0.9),
-            y : this.percentageOfHeight(0.23),
+            x : 875,
+            y : 137,
             color: "aqua",
             font : "Tahoma 10px",
         }));
         
         // Display final score
         this.addChild(this.scoreDisplay = new TGE.Text().setup({
-            x : this.percentageOfWidth(0.80),
-            y : this.percentageOfHeight(0.55),
-            color: "green",
+            x : 765,
+            y : 295,
+            color: "cyan",
             font : "Tahoma 30px",
         }));
     
