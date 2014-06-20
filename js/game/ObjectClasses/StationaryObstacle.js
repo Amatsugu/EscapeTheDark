@@ -38,7 +38,7 @@ StationaryObstacle.prototype = {
 		if (type == 1 || type == 4) {  				
 			params.image = "Building_A";
 			//params.worldY = 400;
-			params.worldY = 10;
+			params.worldY = 25;
 			this.mHeight = 50;
 		}	
 		
@@ -46,7 +46,7 @@ StationaryObstacle.prototype = {
 		else if (type == 2 || type == 5) {  		
 			params.image = "Building_B";
 			//params.worldY = 0;
-				params.worldY = 35;
+				params.worldY = 50;
 				this.mHeight = 100;
 		}
 
@@ -54,7 +54,7 @@ StationaryObstacle.prototype = {
 		else if (type == 3 || type == 6) {  		
 			params.image = "Building_C";
 			//params.worldY = 0;
-				params.worldY = 85;
+				params.worldY = 100;
 				this.mHeight = 200;
 		}
 		
