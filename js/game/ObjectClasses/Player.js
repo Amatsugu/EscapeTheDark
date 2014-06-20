@@ -187,7 +187,7 @@ Player.prototype = {
 		}
 		this.worldX = this.mDistance; //Applys player X
 		this.worldY = this.mPosition; //Applys player Y
-		this.mDebug.text = "speed:" + this.mHorizontalSpeed;
+		//this.mDebug.text = "speed:" + this.mHorizontalSpeed;
 		this.mHorizontalSpeed += this.mAcceleration;
 		this.hasCollided = false;
 		this.mGame.mousedown = false;
