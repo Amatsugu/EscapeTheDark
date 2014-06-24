@@ -234,7 +234,7 @@ GameScreen.prototype = {
 						
 						this.coinLayer.addChild(new Coin().setup({
 							worldX : this.mSpawnNextPos,
-							worldY : pos-16,
+							worldY : pos+16,
 							isAlien : true,
 							gameScreen : this
 						}));

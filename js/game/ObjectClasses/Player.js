@@ -2,7 +2,7 @@ Player = function() {
 	Player.superclass.constructor.call(this);
 	
 	// Player settings
-	this.mGroundHeight = 80;
+	this.mGroundHeight = 50;
 	this.mHorizontalSpeed = 0;
 	this.mJumpSpeed = 0;
 	this.mGravity = 0;
@@ -38,8 +38,8 @@ Player.prototype = {
 	{
     	this.mGame = params.gameScreen;
     	this.mOrigGround = this.mGroundHeight;
-    	this.height = 200;
-    	this.width = 100;
+    	this.height = 128;
+    	this.width = 128;
 		Player.superclass.setup.call(this, params);
 		this.SetupAnimations();
 		this.addChild(this.UILayer = new TGE.DisplayObjectContainer().setup({}));
@@ -198,7 +198,7 @@ Player.prototype = {
 			this.markForRemoval();
 		}
 		this.worldX = this.mDistance; //Applys player X
-		this.worldY = this.mPosition-16; //Applys player Y
+		this.worldY = this.mPosition+10; //Applys player Y
 		//this.mDebug.text = "speed:" + this.mHorizontalSpeed;
 		this.mHorizontalSpeed += this.mAcceleration;
 		this.hasCollided = false;
