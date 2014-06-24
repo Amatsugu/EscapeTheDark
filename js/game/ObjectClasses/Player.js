@@ -2,7 +2,7 @@ Player = function() {
 	Player.superclass.constructor.call(this);
 	
 	// Player settings
-	this.mGroundHeight = 70;
+	this.mGroundHeight = 80;
 	this.mHorizontalSpeed = 0;
 	this.mJumpSpeed = 0;
 	this.mGravity = 0;
@@ -61,8 +61,8 @@ Player.prototype = {
 		this.animArray["run"] = this.addChild(new TGE.SpriteSheetAnimation().setup({
 			image : "player_running",
 			rows : 1,
-			columns : 5,
-			totalFrames : 5,
+			columns : 10,
+			totalFrames : 10,
 			fps : 10,
 			looping : true,
 			visible : false
@@ -80,11 +80,22 @@ Player.prototype = {
 		}));
 
 		// Hang animation
-		this.animArray["hang"] = this.addChild(new TGE.SpriteSheetAnimation().setup({
-	        image : "player_hang",
+		this.animArray["idle"] = this.addChild(new TGE.SpriteSheetAnimation().setup({
+	        image : "player_idle",
 	        rows : 1,
-	        columns : 2,
-	        totalFrames : 2,
+	        columns : 7,
+	        totalFrames : 7,
+	        fps : 4,
+	        looping : false,
+	        visible : false
+		}));
+
+
+		this.animArray["stop"] = this.addChild(new TGE.SpriteSheetAnimation().setup({
+	        image : "player_running",
+	        rows : 1,
+	        columns : 10,
+	        totalFrames : 1,
 	        fps : 8,
 	        looping : false,
 	        visible : false
@@ -101,7 +112,7 @@ Player.prototype = {
 			return;
 		if (this.mStopped)
 		{
-			//this.StopAnimation();
+			this.PlayAnimation("stop");
 			this.markForRemoval();
 			return;
 		}
@@ -172,6 +183,7 @@ Player.prototype = {
 		if(this.checkIntersection(playerRect))
 		{
 			this.mCurSpeed = 0;
+			this.PlayAnimation("idle");
 		}
 		this.mPosition += this.mVerticalSpeed; //Use vertical speed to determine vertical position
 		this.mDistance += this.mCurSpeed; //use horizontal speed to determine distance traveled
@@ -186,7 +198,7 @@ Player.prototype = {
 			this.markForRemoval();
 		}
 		this.worldX = this.mDistance; //Applys player X
-		this.worldY = this.mPosition; //Applys player Y
+		this.worldY = this.mPosition-16; //Applys player Y
 		//this.mDebug.text = "speed:" + this.mHorizontalSpeed;
 		this.mHorizontalSpeed += this.mAcceleration;
 		this.hasCollided = false;

@@ -22,9 +22,9 @@ Runner = function()
         
         
         //Player pieces
-        {id:'player_running',   		url:'char/run/runAnim2.png'},
-        {id:'player_flying', 			url:'char/jump/jumpAnim.png'},
-        {id:'player_hang',            url:'char/hang/hangAnim.png'},
+        {id:'player_running',   		url:'char/run/NinjaRunAnim.png'},
+        {id:'player_flying', 			url:'char/jump/JumpingAnim.png'},
+        {id:'player_idle',            url:'char/run/IdleAnim.png'},
 
 
         // Backgrounds
