@@ -464,10 +464,9 @@ GameScreen.prototype = {
 	},
 	
 	GetScore : function() {
-		if (this.mCoins == 0) return Math.floor(this.mDistance);//+ this.mTotalJumps) ;
 
 		//Score is distance * coins
-		else return Math.floor(((this.mDistance * this.mCoins)));//+this.mTotalJumps);
+		return Math.floor(((this.mDistance * (this.mCoins+1))));//+this.mTotalJumps);
 	},
 	
 	IncPlayerDistance : function(pixels) 
