@@ -14,6 +14,7 @@ GameScreen = function(width, height) {
 	this.mPlaying = true;
 	this.mSpawnNextPos = 5;
 	this.mDarkness;
+	this.floorOffset = 20;
 
 	//Coin generation parameters
 	this.mCoinFrequency = 0;
@@ -231,10 +232,10 @@ GameScreen.prototype = {
 							pos = this.mPlayer.mOrigGround + 100;
 						else if(typeNum == 6)
 							pos = this.mPlayer.mOrigGround + 200;
-						
+						pos += this.floorOffset;
 						this.coinLayer.addChild(new Coin().setup({
 							worldX : this.mSpawnNextPos,
-							worldY : pos+16,
+							worldY : pos,
 							isAlien : true,
 							gameScreen : this
 						}));
@@ -246,6 +247,7 @@ GameScreen.prototype = {
 							pos = this.mPlayer.mOrigGround + 100;
 						else if(typeNum == 3)
 							pos = this.mPlayer.mOrigGround + 200;
+						pos += this.floorOffset;
 						this.coinLayer.addChild(new Coin().setup({
 							worldX : this.mSpawnNextPos,
 							worldY : pos,
@@ -361,7 +363,7 @@ GameScreen.prototype = {
 		//Scrolling ground plane
 		this.artLayer.addChild(new TGE.ParallaxPane().setup({
 			image : "gamescreen_ground",
-			worldY: 0,
+			worldY: 0 + this.floorOffset,
 			trackingSpeed : 1
 		}));
 	},
