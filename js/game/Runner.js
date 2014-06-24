@@ -10,6 +10,7 @@ Runner = function()
         {id:'Building_B',    url:'stationaryObstacles/build_B.png'},
         {id:'Building_C',    url:'stationaryObstacles/build_C.png'},
         {id:'ufo',  url:'stationaryObstacles/ufo.png'},
+        {id:'alien',  url:'stationaryObstacles/AlienAnim.png'},
         {id:'Darkness',  url:'widgets/darkness.png'},
        
         //Moving Obstacles

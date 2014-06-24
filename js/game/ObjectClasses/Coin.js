@@ -22,16 +22,16 @@ Coin.prototype = {
 		if(params.isAlien)
 		{
 			//params.image = "ufo";
-			this.animArray["ufo"] = this.addChild(new TGE.SpriteSheetAnimation().setup({
-				image : "ufo",
+			this.animArray["alien"] = this.addChild(new TGE.SpriteSheetAnimation().setup({
+				image : "alien",
 				rows : 1,
-				columns : 1,
-				totalFrames : 1,
-				fps : 1,
-				looping : false,
+				columns : 4,
+				totalFrames : 4,
+				fps : 8,
+				looping : true,
 				visible : false
 			}));
-			this.PlayAnimation("ufo");
+			this.PlayAnimation("alien");
 		}
 		else
 		{
