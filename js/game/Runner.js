@@ -43,6 +43,7 @@ Runner = function()
         
         //UI
         {id:'distance_ui',   					url:'distance_ui.png'},  
+        {id:'orb_ui',                    url:'orb_ui.png'},
         
         //Sounds
         {id:'background_music',			url:'sounds/background_music.ogg',			backup_url:'sounds/background_music.mp3',		assetType:"audio"},

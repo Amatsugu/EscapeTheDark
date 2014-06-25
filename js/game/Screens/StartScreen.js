@@ -14,6 +14,7 @@ StartScreen = function() {
         x : 770,
         y : 375,
         image: "play_button",
+        numStates : 4,
         pressFunction : this.gotoGameScreen.bind(this),
     }));
   

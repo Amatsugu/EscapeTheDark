@@ -109,7 +109,10 @@ Player.prototype = {
 	UpdatePosition : function(event) 
 	{
 		if(this.mGame.isPaused)
+		{
+			this.PlayAnimation("stop");
 			return;
+		}
 		if (this.mStopped)
 		{
 			this.PlayAnimation("stop");

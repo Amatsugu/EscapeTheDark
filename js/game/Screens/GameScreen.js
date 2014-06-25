@@ -99,7 +99,7 @@ GameScreen.prototype = {
 		this.coinDisplay.text = Math.floor(this.mCoins).toString();
 		this.mDistance = this.mPlayer.mDistance/100;
 		this.distanceDisplay.x = this.width-10-this.distanceDisplay.width/2;
-		this.distanceUI.x = this.width -(this.distanceUI.width/2) -  this.distanceDisplay.width + 30;
+		this.distanceUI.x = this.width -(this.distanceUI.width/2) -  this.distanceDisplay.width + 50;
 		//this.mPlayer.hasCollided = false;
 		// Read & make level
 		this.ReadNextEvent(event.elapsedTime);
@@ -377,12 +377,17 @@ GameScreen.prototype = {
 		
 		//Text that displays distance traveled
 		//console.log(this.width);
+
+		var LOXO = new Font();
+        LOXO.fontFamily = "LOXO";
+        //LOXO.src = "fonts/LOXO.ttf";
+
 		this.distanceDisplay = this.UILayer.addChild(new TGE.Text().setup({
 			x : this.width,
 			y : 30,
 			text : "0",
-			font : "Tahoma 20px",
-			color : "#green",
+			font : "LOXO 20px",
+			color : "cyan",
 			align : "right",
 			size : 16
 		}));
@@ -390,28 +395,28 @@ GameScreen.prototype = {
 		//Feet icon that sits in front of the distance traveled number
 	    this.distanceUI = this.UILayer.addChild(new TGE.Sprite().setup({
 	    	x : 25,
-	        y : 25,
+	        y : 30,
 	    	image : "distance_ui",
-	    	scaleX : 0.5,
-	    	scaleY : 0.5
+	    	scaleX : 0.6,
+	    	scaleY : 0.6
 	    }));
 
 		//Text that displays coins collected
 		this.coinDisplay = this.UILayer.addChild(new TGE.Text().setup({
-			x : 72,
+			x : 160,
 			y : 30,
 			text : "0",
-			font : "Tahoma 20px",
-			color : "green"
+			font : "LOXO 20px",
+			color : "cyan"
 		}));
 		
 		//Coin icon that sits in front of the coins collected number
 	    this.addChild(new TGE.Sprite().setup({
-	    	x : 25,
+	    	x : 75,
 	        y : 30,
-	    	image : "coin",
-	    	scaleX : 0.75,
-	    	scaleY : 0.75
+	    	image : "orb_ui",
+	    	scaleX : 0.6,
+	    	scaleY : 0.6
 	    }));
 
 	    //Pause Text
@@ -419,7 +424,7 @@ GameScreen.prototype = {
 			x : this.width/2,
 			y : -50,
 			text : "Game Paused \nPress Escape To Resume",
-			font : "Tahoma 20px",
+			font : "LOXO 20px",
 			color : "white"
 		}));
 		this.pauseText.x = (this.width/2)-(this.pauseText.width/2);
@@ -466,9 +471,10 @@ GameScreen.prototype = {
 	},
 	
 	GetScore : function() {
-
+		if(this.coins == 0)
+			return Math.floor(this.mDistance);
 		//Score is distance * coins
-		return Math.floor(((this.mDistance * (this.mCoins+1))));//+this.mTotalJumps);
+		return Math.floor(this.mDistance * this.mCoins);//+this.mTotalJumps);
 	},
 	
 	IncPlayerDistance : function(pixels) 
