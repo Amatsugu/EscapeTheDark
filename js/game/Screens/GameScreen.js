@@ -232,7 +232,7 @@ GameScreen.prototype = {
 							pos = this.mPlayer.mOrigGround + 100;
 						else if(typeNum == 6)
 							pos = this.mPlayer.mOrigGround + 200;
-						pos += this.floorOffset;
+						pos += this.floorOffset+16;
 						this.coinLayer.addChild(new Coin().setup({
 							worldX : this.mSpawnNextPos,
 							worldY : pos,
@@ -356,7 +356,7 @@ GameScreen.prototype = {
 		//Middle ground plane
 		this.artLayer.addChild(new TGE.ParallaxPane().setup({
 			image : "gamescreen_middleground",
-			worldY : 250,
+			worldY : 190,
 			trackingSpeed : 0.25 
 		}));
 		

@@ -38,7 +38,7 @@ StationaryObstacle.prototype = {
 		if (type == 1 || type == 4) {  				
 			params.image = "Building_A";
 			//params.worldY = 400;
-			params.worldY = 25;
+			params.worldY = 75;
 			this.mHeight = 50;
 		}	
 		
@@ -46,7 +46,7 @@ StationaryObstacle.prototype = {
 		else if (type == 2 || type == 5) {  		
 			params.image = "Building_B";
 			//params.worldY = 0;
-				params.worldY = 50;
+				params.worldY = 120;
 				this.mHeight = 100;
 		}
 
@@ -54,10 +54,10 @@ StationaryObstacle.prototype = {
 		else if (type == 3 || type == 6) {  		
 			params.image = "Building_C";
 			//params.worldY = 0;
-				params.worldY = 100;
+				params.worldY = 200;
 				this.mHeight = 200;
 		}
-		
+		params.worldY -= 245;	
 	},
 
 	DetectCollisions : function(event) 
