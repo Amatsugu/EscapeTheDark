@@ -152,7 +152,7 @@ Player.prototype = {
 		}
 
 
-		if(this.mDistance < this.mCamDist+ this.mGame.width/4)//Allows the player to get ahead on screen
+		/*if(this.mDistance < this.mCamDist+ this.mGame.width/4)//Allows the player to get ahead on screen
 		{
 			if(this.mCamSpeed > this.mHorizontalSpeed/2)
 				this.mCamSpeed -= this.mHorizontalSpeed*.0005;
@@ -165,8 +165,10 @@ Player.prototype = {
 				this.mCamSpeed += this.mHorizontalSpeed*0.2;
 			}else
 				this.mCamSpeed = this.mHorizontalSpeed;
-		}
-
+		}*/
+		this.mCamSpeed = this.mHorizontalSpeed;
+		if(this.mCamDist > this.mDistance)
+			this.mCurSpeed += 1;
 		if(this.mPosition < this.mGroundHeight)
 		{
 			this.mPosition = this.mGroundHeight;

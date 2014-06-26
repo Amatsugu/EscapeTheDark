@@ -15,6 +15,7 @@ Runner = function()
         {id:'ufo',  url:'stationaryObstacles/ufo.png'},
         {id:'alien',  url:'stationaryObstacles/AlienAnim.png'},
         {id:'Darkness',  url:'widgets/darkness.png'},
+        {id:'DarknessBack', url:'widgets/darkness-back.png'},
        
         //Moving Obstacles
         {id:'moving_obstacle_A', 		url:'movingObstacles/moving_obstacle_A.png'},
@@ -49,6 +50,8 @@ Runner = function()
         //UI
         {id:'distance_ui',   			 url:'distance_ui.png'},  
         {id:'orb_ui',                    url:'orb_ui.png'},
+        {id:'leftHUD',                   url:'screens/HUD_left.png'},
+        {id:'rightHUD',                   url:'screens/HUD_right.png'},
         
         //Sounds
         {id:'background_music',			url:'sounds/background_music.ogg',			backup_url:'sounds/background_music.mp3',		assetType:"audio"},

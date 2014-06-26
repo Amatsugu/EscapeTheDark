@@ -15,13 +15,7 @@ GameScreen = function(width, height) {
 	this.mSpawnNextPos = 5;
 	this.mDarkness;
 	this.floorOffset = 20;
-
-	//Coin generation parameters
-	this.mCoinFrequency = 0;
-	this.mCoinHeight = this.height / 2;
-	this.mCoinWaveAmplitude = 0;
-	this.mCoinWaveFrequency = 0;
-	this.mCoinWaveTimer = 0;
+	this.elapsedTime = 0;
 
 	//Obstacle generation parameters
 	this.mLastObstacle = 0;
@@ -44,7 +38,7 @@ GameScreen.prototype = {
 		this.addChild(this.artLayer = new TGE.DisplayObjectContainer().setup({}));
 		this.addChild(this.coinLayer = new TGE.DisplayObjectContainer().setup({}));
 		this.addChild(this.obstacleLayer = new TGE.DisplayObjectContainer().setup({}));
-		this.addChild(this.UILayer = new TGE.DisplayObjectContainer().setup({}));
+		
 		
 		//Setup parallax planes
 		this.SetupParallaxingPlanes();
@@ -56,13 +50,14 @@ GameScreen.prototype = {
 			y : this.percentageOfHeight(0.5),
 			gameScreen : this
 		})));
+		this.addChild(this.UILayer = new TGE.DisplayObjectContainer().setup({}));
 
-		//Add Darkness
+		/*//Add Darkness
 		this.addChild(this.mDarkness = this.addChild(new Darkness().setup({
 			x : this.percentageOfWidth(0.5),
 			y : this.percentageOfHeight(0.5),
 			gameScreen : this
-		})));
+		})));*/
 
 		//Add distance display & coin display
 		this.SetupHud();
@@ -101,12 +96,19 @@ GameScreen.prototype = {
 		this.mDistance = this.mPlayer.mDistance/100;
 		this.distanceDisplay.x = this.width-10-this.distanceDisplay.width/2;
 		this.distanceUI.x = this.width -(this.distanceUI.width/2) -  this.distanceDisplay.width + 50;
+		this.leftHUD.x = this.Lerp(this.leftHUD.x, this.coinDisplay.width + this.coinDisplay.x - 180, 0.1);
+		this.rightHUD.x = this.Lerp(this.rightHUD.x, this.distanceUI.x + 50, .1);
+
+		//Darkness
+		this.darkness.y = this.height/2 + (Math.sin(this.elapsedTime)*10);
+		this.darknessBack.y = this.height/2 + (Math.cos(this.elapsedTime)*10);
 		//this.mPlayer.hasCollided = false;
 		// Read & make level
 		this.ReadNextEvent(event.elapsedTime);
 		//this.SpawnObstacles(event.elapsedTime);
 		this.GenerateRandom(event.elapsedTime);
 		this.SpawnCoins(event.elapsedTime);
+		this.elapsedTime += 0.1;
 	},
 	
 	ReadNextEvent : function(elapsedTime) {
@@ -387,11 +389,33 @@ GameScreen.prototype = {
 		
 		//Text that displays distance traveled
 		//console.log(this.width);
+
+
+		//Darkness
+		this.darkness = this.UILayer.addChild(new TGE.Sprite().setup({
+			x:74,
+			y:this.height/2,
+			image : "Darkness"
+		}));
+
+		this.darknessBack = this.UILayer.addChild(new TGE.Sprite().setup({
+			x:74,
+			y:this.height/2,
+			image : "DarknessBack"
+		}));
+
+
 		var fontSize = "45px LOXO";
+
+		this.rightHUD = this.UILayer.addChild(new TGE.Sprite().setup({
+	    	x : this.width-128,
+	        y : 30,
+	    	image : "rightHUD",
+	    }));
 
 		this.distanceDisplay = this.UILayer.addChild(new TGE.Text().setup({
 			x : this.width,
-			y : 30,
+			y : 25,
 			text : "0",
 			font : fontSize,
 			color : "cyan",
@@ -402,16 +426,22 @@ GameScreen.prototype = {
 		//Feet icon that sits in front of the distance traveled number
 	    this.distanceUI = this.UILayer.addChild(new TGE.Sprite().setup({
 	    	x : 25,
-	        y : 30,
+	        y : 25,
 	    	image : "distance_ui",
 	    	scaleX : 0.6,
 	    	scaleY : 0.6
 	    }));
 
+	    this.leftHUD = this.UILayer.addChild(new TGE.Sprite().setup({
+	    	x : 128,
+	        y : 30,
+	    	image : "leftHUD",
+	    }));
+
 		//Text that displays coins collected
 		this.coinDisplay = this.UILayer.addChild(new TGE.Text().setup({
 			x : 160,
-			y : 30,
+			y : 25,
 			text : "0",
 			font : fontSize,
 			color : "cyan"
@@ -419,8 +449,8 @@ GameScreen.prototype = {
 		
 		//Coin icon that sits in front of the coins collected number
 	    this.addChild(new TGE.Sprite().setup({
-	    	x : 75,
-	        y : 30,
+	    	x : 74,
+	        y : 25,
 	    	image : "orb_ui",
 	    	scaleX : 0.6,
 	    	scaleY : 0.6
@@ -453,6 +483,7 @@ GameScreen.prototype = {
 	PlayerHitObstacle : function(cause) 
 	{
 		// Stop sound
+		this.mPlaying = false;
 		TGE.Game.GetInstance().audioManager.StopAll();
 		this.deathCause = cause;
 		//Play sound
@@ -472,6 +503,7 @@ GameScreen.prototype = {
 				loop : '0'
 			});
 		}
+		this.causeOfDeath = cause;
 
 		//End game
 		this.EndGame();
