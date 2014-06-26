@@ -97,6 +97,7 @@ GameScreen.prototype = {
 		// Update the distance and coin displays
 		this.distanceDisplay.text = Math.floor(this.mDistance).toString();
 		this.coinDisplay.text = Math.floor(this.mCoins).toString();
+		this.coinDisplay.x = 155 + this.coinDisplay.width/2;
 		this.mDistance = this.mPlayer.mDistance/100;
 		this.distanceDisplay.x = this.width-10-this.distanceDisplay.width/2;
 		this.distanceUI.x = this.width -(this.distanceUI.width/2) -  this.distanceDisplay.width + 50;
@@ -377,16 +378,13 @@ GameScreen.prototype = {
 		
 		//Text that displays distance traveled
 		//console.log(this.width);
-
-		var LOXO = new Font();
-        LOXO.fontFamily = "LOXO";
-        //LOXO.src = "fonts/LOXO.ttf";
+		var fontSize = "45px LOXO";
 
 		this.distanceDisplay = this.UILayer.addChild(new TGE.Text().setup({
 			x : this.width,
 			y : 30,
 			text : "0",
-			font : "LOXO 20px",
+			font : fontSize,
 			color : "cyan",
 			align : "right",
 			size : 16
@@ -406,7 +404,7 @@ GameScreen.prototype = {
 			x : 160,
 			y : 30,
 			text : "0",
-			font : "LOXO 20px",
+			font : fontSize,
 			color : "cyan"
 		}));
 		
@@ -423,8 +421,8 @@ GameScreen.prototype = {
 	    this.pauseText = this.UILayer.addChild(new TGE.Text().setup({
 			x : this.width/2,
 			y : -50,
-			text : "Game Paused \nPress Escape To Resume",
-			font : "LOXO 20px",
+			text : "Game Paused Press Escape To Resume",
+			font : fontSize,
 			color : "white"
 		}));
 		this.pauseText.x = (this.width/2)-(this.pauseText.width/2);

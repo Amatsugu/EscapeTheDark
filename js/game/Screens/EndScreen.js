@@ -14,8 +14,8 @@ EndScreen = function() {
 
 EndScreen.prototype = {
 
-	setup : function(params) {
-		EndScreen.superclass.setup.call(this, params);
+    setup : function(params) {
+        EndScreen.superclass.setup.call(this, params);
         this.addChild(new TGE.Sprite().setup({
                 x : this.percentageOfWidth(0.5),
                 y : this.percentageOfHeight(0.5),
@@ -28,10 +28,6 @@ EndScreen.prototype = {
         {
             
         }
-
-        var LOXO = new Font();
-        LOXO.fontFamily = "LOXO";
-        //LOXO.src = "fonts/LOXO.ttf";
 
         // Try Again button
         this.addChild(new TGE.Button().setup({
@@ -47,7 +43,7 @@ EndScreen.prototype = {
             x : 875,
             y : 48,
             color: "red",
-            font : "LOXO 10px",
+            font : "40px LOXO",
         }));
         
         // Display coins earned
@@ -55,7 +51,7 @@ EndScreen.prototype = {
             x : 875,
             y : 92,
             color: "yellow",
-            font : "LOXO 10px",
+            font :  "40px LOXO",
         }));
 
         // Display Times jumped
@@ -63,7 +59,7 @@ EndScreen.prototype = {
             x : 875,
             y : 137,
             color: "aqua",
-            font : "LOXO 10px",
+            font :  "40px LOXO",
         }));
         
         // Display final score
@@ -71,7 +67,7 @@ EndScreen.prototype = {
             x : 765,
             y : 300,
             color: "cyan",
-            font : "LOXO 30px",
+            font :  "40px LOXO",
         }));
 
         this.tgsWidget = new TGS.Widget.CreateWidget({
@@ -81,25 +77,25 @@ EndScreen.prototype = {
             disableLeaderboard : true,
         });
     
-		// Update final totals
-		this.coinDisplay.text = params.coins.toString();
-		this.distanceDisplay.text = params.distance.toString();
-		this.scoreDisplay.text = params.score.toString();
+        // Update final totals
+        this.coinDisplay.text = params.coins.toString();
+        this.distanceDisplay.text = params.distance.toString();
+        this.scoreDisplay.text = params.score.toString();
         this.jumpsDisplay.text = params.jumps.toString();
-	    
-	    return this;
-	},
+        
+        return this;
+    },
 
     ReStart : function()
     {
         this.transitionToWindow({
-	        windowClass : GameScreen,
-	        fadeTime : 0.25
-	    });
-	},
+            windowClass : GameScreen,
+            fadeTime : 0.25
+        });
+    },
 
     PlayAgain : function() {
-       this.tgsWidget.close(this.ReStart);   
+       this.tgsWidget.close(this.ReStart.bind(this));   
     }
 }
 

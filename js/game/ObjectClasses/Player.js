@@ -148,7 +148,7 @@ Player.prototype = {
 		if(this.mCurSpeed > this.mHorizontalSpeed) //Prevents speed from exceeding intended speed
 		{
 			this.mCurSpeed = this.mHorizontalSpeed;
-			this.PlayAnimation("run");
+			//Sthis.PlayAnimation("run");
 		}
 
 
@@ -188,6 +188,9 @@ Player.prototype = {
 			this.mCurSpeed = 0;
 			this.PlayAnimation("idle");
 		}
+
+		if(this.mVerticalSpeed != 0)
+			this.PlayAnimation("fly");
 		this.mPosition += this.mVerticalSpeed; //Use vertical speed to determine vertical position
 		this.mDistance += this.mCurSpeed; //use horizontal speed to determine distance traveled
 		this.mCamDist += this.mCamSpeed; //uses the camera's speed to determine the camera's X position

@@ -2,6 +2,9 @@ Runner = function()
 {
     Runner.superclass.constructor.call(this);
 
+    var LOXO = new Font();
+    LOXO.fontFamily = "LOXO";
+    //LOXO.src = "assets/fonts/LOXO.ttf";
      // load all assets for game
     this.assetManager.addAssets("required",[
         
