@@ -460,8 +460,8 @@ GameScreen.prototype = {
 	    this.pauseText = this.UILayer.addChild(new TGE.Text().setup({
 			x : this.width/2,
 			y : -50,
-			text : "Game Paused Press Escape To Resume",
-			font : fontSize,
+			text : "Game Paused",
+			font : "35px LOXO",
 			color : "white"
 		}));
 		this.pauseText.x = (this.width/2)-(this.pauseText.width/2);
