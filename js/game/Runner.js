@@ -43,9 +43,11 @@ Runner = function()
         // Buttons
         {id:'play_button',   			url:'buttons/play_button.png'},
         {id:'playagain_button',   		url:'buttons/playagain_button.png'},
+        {id:'mute',                     url:'buttons/Mute.png'},
+        {id:'muted',                    url:'buttons/Muted.png'},
         
         //UI
-        {id:'distance_ui',   					url:'distance_ui.png'},  
+        {id:'distance_ui',   			 url:'distance_ui.png'},  
         {id:'orb_ui',                    url:'orb_ui.png'},
         
         //Sounds

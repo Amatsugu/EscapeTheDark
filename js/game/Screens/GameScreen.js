@@ -249,12 +249,21 @@ GameScreen.prototype = {
 						else if(typeNum == 3)
 							pos = this.mPlayer.mOrigGround + 200;
 						pos += this.floorOffset;
-						this.coinLayer.addChild(new Coin().setup({
-							worldX : this.mSpawnNextPos,
-							worldY : pos,
-							isAlien : false,
-							gameScreen : this
-						}));
+						var height = this.RandomRange(1,4);
+						var width = this.RandomRange(1,5);
+						for(var x = 0; x < width; x++)
+						{
+							var xOffset = (48*width*0.5)-24;
+							for(var y = 0; y < height; y++)
+							{
+								this.coinLayer.addChild(new Coin().setup({
+									worldX : this.mSpawnNextPos + (48*x) - xOffset,
+									worldY : pos + (48*y),
+									isAlien : false,
+									gameScreen : this
+								}));
+							}
+						}
 					}
 
 			}
