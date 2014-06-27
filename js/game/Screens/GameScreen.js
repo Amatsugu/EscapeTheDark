@@ -72,7 +72,33 @@ GameScreen.prototype = {
 
 	Update : function(event) {
 
-		if (!this.mPlaying) return;
+		if (!this.mPlaying) 
+		{
+			if(this.causeOfDeath == "alien")
+			{
+				if(this.ufo.x < (this.mPlayer.x)+10)
+				{
+					this.rightBeam.alpha = this.Lerp(this.rightBeam.alpha, 1.1, .1);
+				}
+				if(this.rightBeam.alpha >= .7)
+				{
+					this.mPlayer.mVerticalSpeed = 1;
+					this.ufo.y -= 1;
+					console.log("test");
+					this.EndGame();
+				}
+				this.ufo.x = this.Lerp(this.ufo.x, this.mPlayer.x, 0.1);
+				if(this.rightBeam.alpha <= .7)	
+					this.ufo.y = this.Lerp(this.ufo.y, 50 , 0.1);
+				this.rightBeam.x = this.ufo.x;
+				this.rightBeam.y = this.ufo.y;
+				
+			}else
+			{
+				this.EndGame();
+			}
+			return;
+		}
 		if(this.isPaused)
 		{
 			var h = this.pauseText.height;
@@ -447,13 +473,29 @@ GameScreen.prototype = {
 			color : "cyan"
 		}));
 		
-		//Coin icon that sits in front of the coins collected number
+		//Orb UI
 	    this.addChild(new TGE.Sprite().setup({
 	    	x : 74,
 	        y : 25,
 	    	image : "orb_ui",
 	    	scaleX : 0.6,
 	    	scaleY : 0.6
+	    }));
+
+	    this.rightBeam = this.UILayer.addChild(new TGE.Sprite().setup({
+	    	x : this.width,
+	    	y : 0,
+	    	image : "beam",
+	    	visible : false,
+	    	registrationY : 0,
+	    	alpha : 0
+	    }));
+	    
+	    this.ufo = this.UILayer.addChild(new TGE.Sprite().setup({
+	    	x : this.width+50,
+	    	y : -50,
+	    	image : "ufo",
+	    	visible : false,
 	    }));
 
 	    //Pause Text
@@ -464,6 +506,9 @@ GameScreen.prototype = {
 			font : "35px LOXO",
 			color : "white"
 		}));
+
+
+
 		this.pauseText.x = (this.width/2)-(this.pauseText.width/2);
 	    
 	},
@@ -483,7 +528,7 @@ GameScreen.prototype = {
 	PlayerHitObstacle : function(cause) 
 	{
 		// Stop sound
-		this.mPlaying = false;
+		this.mPlaying = false;			
 		TGE.Game.GetInstance().audioManager.StopAll();
 		this.deathCause = cause;
 		//Play sound
@@ -497,6 +542,9 @@ GameScreen.prototype = {
 			
 		}else if(cause == "alien")
 		{
+			this.rightBeam.visible = true;
+			this.ufo.visible = true;
+			this.mPlayer.PlayAnimation("fly");
 			//Alien Death Here
 			TGE.Game.GetInstance().audioManager.Play({
 				id : 'hitObstacle_sound',
@@ -506,11 +554,11 @@ GameScreen.prototype = {
 		this.causeOfDeath = cause;
 
 		//End game
-		this.EndGame();
+		//this.EndGame();
 	},
 	
 	GetScore : function() {
-		if(this.coins == 0)
+		if(this.mCoins == 0)
 			return Math.floor(this.mDistance);
 		//Score is distance * coins
 		return Math.floor(this.mDistance * this.mCoins);//+this.mTotalJumps);

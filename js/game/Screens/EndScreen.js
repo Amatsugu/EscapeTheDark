@@ -31,7 +31,7 @@ EndScreen.prototype = {
 
         // Try Again button
         this.addChild(new TGE.Button().setup({
-            x : 765,
+            x : 700,
             y : 435,
             image: "playagain_button",
             numStates : 4,
@@ -40,7 +40,7 @@ EndScreen.prototype = {
 
         // Display distance traveled
         this.addChild(this.distanceDisplay = new TGE.Text().setup({
-            x : 875,
+            x : 820,
             y : 48,
             color: "red",
             font : "40px LOXO",
@@ -48,7 +48,7 @@ EndScreen.prototype = {
         
         // Display coins earned
         this.addChild(this.coinDisplay = new TGE.Text().setup({
-            x : 875,
+            x : 820,
             y : 92,
             color: "yellow",
             font :  "40px LOXO",
@@ -56,7 +56,7 @@ EndScreen.prototype = {
 
         // Display Times jumped
         this.addChild(this.jumpsDisplay = new TGE.Text().setup({
-            x : 875,
+            x : 820,
             y : 137,
             color: "aqua",
             font :  "40px LOXO",
@@ -64,14 +64,14 @@ EndScreen.prototype = {
         
         // Display final score
         this.addChild(this.scoreDisplay = new TGE.Text().setup({
-            x : 765,
+            x : 700,
             y : 300,
             color: "cyan",
-            font :  "40px LOXO",
+            font :  "50px LOXO",
         }));
 
         this.tgsWidget = new TGS.Widget.CreateWidget({
-            x : 150,
+            x : 75,
             y : 100,
             showLogin : false,
             disableLeaderboard : true,

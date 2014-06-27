@@ -39,7 +39,7 @@ Player.prototype = {
     	this.mGame = params.gameScreen;
     	this.mOrigGround = this.mGroundHeight;
     	this.height = 128;
-    	this.width = 128;
+    	this.width = 100;
 		Player.superclass.setup.call(this, params);
 		this.SetupAnimations();
 		this.addChild(this.UILayer = new TGE.DisplayObjectContainer().setup({}));
@@ -113,59 +113,41 @@ Player.prototype = {
 			this.PlayAnimation("stop");
 			return;
 		}
-		if (this.mStopped)
+		if(!this.mStopped)
 		{
-			this.PlayAnimation("stop");
-			this.markForRemoval();
-			return;
-		}
-		//Jump
-		if(this.mGame.mousedown)//Gets Player Input
-		{
-			if(this.canJump)
+			//Jump
+			if(this.mGame.mousedown)//Gets Player Input
 			{
-				this.mVerticalSpeed = this.mJumpSpeed; //Apply Jump
-				this.PlayAnimation("fly");
-				this.mTotalJumps++;
-				this.canJump = false;
+				if(this.canJump)
+				{
+					this.mVerticalSpeed = this.mJumpSpeed; //Apply Jump
+					this.PlayAnimation("fly");
+					this.mTotalJumps++;
+					this.canJump = false;
+				}
+			}
+
+			if(this.mPosition > this.mGroundHeight)//Apply Gravity
+				this.mVerticalSpeed -= this.mGravity;
+
+			if(this.mPosition < this.mGroundHeight)//Retrun to ground level
+			{
+				this.mVerticalSpeed = 0;
+				this.PlayAnimation("run");
+				this.mPosition = this.mGroundHeight;
+			}
+
+			if(this.mCurSpeed < this.mHorizontalSpeed)//Accelerate to match intended speed
+			{
+				this.mCurSpeed += this.mHorizontalSpeed;
+			}
+			if(this.mCurSpeed > this.mHorizontalSpeed) //Prevents speed from exceeding intended speed
+			{
+				this.mCurSpeed = this.mHorizontalSpeed;
+				//Sthis.PlayAnimation("run");
 			}
 		}
 
-		if(this.mPosition > this.mGroundHeight)//Apply Gravity
-			this.mVerticalSpeed -= this.mGravity;
-
-		if(this.mPosition < this.mGroundHeight)//Retrun to ground level
-		{
-			this.mVerticalSpeed = 0;
-			this.PlayAnimation("run");
-			this.mPosition = this.mGroundHeight;
-		}
-
-		if(this.mCurSpeed < this.mHorizontalSpeed)//Accelerate to match intended speed
-		{
-			this.mCurSpeed += this.mHorizontalSpeed;
-		}
-		if(this.mCurSpeed > this.mHorizontalSpeed) //Prevents speed from exceeding intended speed
-		{
-			this.mCurSpeed = this.mHorizontalSpeed;
-			//Sthis.PlayAnimation("run");
-		}
-
-
-		/*if(this.mDistance < this.mCamDist+ this.mGame.width/4)//Allows the player to get ahead on screen
-		{
-			if(this.mCamSpeed > this.mHorizontalSpeed/2)
-				this.mCamSpeed -= this.mHorizontalSpeed*.0005;
-			else
-				this.mCamSpeed = this.mHorizontalSpeed/2;
-		}else //Prevents player from getting too far ahead
-		{
-			if(this.mCamSpeed < this.mHorizontalSpeed)
-			{
-				this.mCamSpeed += this.mHorizontalSpeed*0.2;
-			}else
-				this.mCamSpeed = this.mHorizontalSpeed;
-		}*/
 		this.mCamSpeed = this.mHorizontalSpeed;
 		if(this.mCamDist > this.mDistance)
 			this.mCurSpeed += 1;
@@ -173,7 +155,13 @@ Player.prototype = {
 		{
 			this.mPosition = this.mGroundHeight;
 		}
-
+		if (this.mStopped)
+		{
+			this.PlayAnimation("stop");
+			//this.markForRemoval();
+			this.mCurSpeed = 0;
+			//return;
+		}
 		var nX = this.mDistance + this.mCurSpeed;
 		var nY = this.mPosition + this.mVerticalSpeed;
 
@@ -203,8 +191,9 @@ Player.prototype = {
 		{
 			this.mGame.GetPlayer().mStopped = true;
 			this.mGame.PlayerHitObstacle("dark");
-			this.markForRemoval();
+			//this.markForRemoval();
 		}
+
 		this.worldX = this.mDistance; //Applys player X
 		this.worldY = this.mPosition+10; //Applys player Y
 		//this.mDebug.text = "speed:" + this.mHorizontalSpeed;
@@ -274,34 +263,6 @@ Player.prototype = {
 			}
 		}
 		return ret;
-	},
-
-	FallBack : function(id, doesHang)
-	{
-		if(id > this.curID)
-			this.curID = id;
-		if(id == this.curID)
-		{
-			this.mCurSpeed = -this.mCamSpeed;
-			this.mCamSpeed = this.mHorizontalSpeed;
-		}
-		if(doesHang)
-			this.PlayAnimation("hang");
-	},
-
-	setID : function(level, id)
-	{
-		if(id > this.curID)
-			this.curID = id;
-	},
-
-	ResetGroundLevel : function(id)
-	{
-		console.log("reset ground level");
-		if(id > this.curID)
-			this.curID = id;
-		if(id == this.curID)
-			this.mGroundHeight = this.mOrigGround;
 	},
 
 	PlayAnimation : function(name) 

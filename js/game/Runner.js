@@ -52,6 +52,10 @@ Runner = function()
         {id:'orb_ui',                    url:'orb_ui.png'},
         {id:'leftHUD',                   url:'screens/HUD_left.png'},
         {id:'rightHUD',                   url:'screens/HUD_right.png'},
+
+
+        //FX
+        {id:'beam',                     url:'fx/Beam.png'},
         
         //Sounds
         {id:'background_music',			url:'sounds/background_music.ogg',			backup_url:'sounds/background_music.mp3',		assetType:"audio"},
