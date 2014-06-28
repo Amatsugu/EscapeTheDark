@@ -42,7 +42,7 @@ EndScreen.prototype = {
         this.addChild(this.distanceDisplay = new TGE.Text().setup({
             x : 820,
             y : 48,
-            color: "red",
+            color: "cyan",
             font : "40px LOXO",
         }));
         
@@ -50,7 +50,7 @@ EndScreen.prototype = {
         this.addChild(this.coinDisplay = new TGE.Text().setup({
             x : 820,
             y : 92,
-            color: "yellow",
+            color: "cyan",
             font :  "40px LOXO",
         }));
 
@@ -58,7 +58,7 @@ EndScreen.prototype = {
         this.addChild(this.jumpsDisplay = new TGE.Text().setup({
             x : 820,
             y : 137,
-            color: "aqua",
+            color: "cyan",
             font :  "40px LOXO",
         }));
         
@@ -71,10 +71,11 @@ EndScreen.prototype = {
         }));
 
         this.tgsWidget = new TGS.Widget.CreateWidget({
-            x : 75,
+            x : 65,
             y : 100,
             showLogin : false,
             disableLeaderboard : true,
+            shareMessage : "I'm Escaping the Darkness with a score of "+params.score+", try you hand at escaping.",
         });
     
         // Update final totals

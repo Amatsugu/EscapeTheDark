@@ -49,6 +49,7 @@ GameScreen.prototype = {
 		this.addChild(this.mPlayer = this.addChild(new Player().setup({
 			x : this.percentageOfWidth(0.5),
 			y : this.percentageOfHeight(0.5),
+			registrationX : 0.5,
 			gameScreen : this
 		})));
 		this.addChild(this.UILayer = new TGE.DisplayObjectContainer().setup({}));
@@ -86,8 +87,11 @@ GameScreen.prototype = {
 					this.mPlayer.mVerticalSpeed = 1;
 					this.ufo.y -= 1;
 					console.log("test");
-					if(!this.hasEnded)
-						this.EndGame();
+					if(this.ufo.y < 0)
+					{
+						if(!this.hasEnded)
+							this.EndGame();
+					}
 				}
 				this.ufo.x = this.Lerp(this.ufo.x, this.mPlayer.x, 0.1);
 				if(this.rightBeam.alpha <= .7)	
@@ -97,6 +101,7 @@ GameScreen.prototype = {
 				
 			}else
 			{
+				this.mPlayer.mVerticalSpeed = 0;
 				if(!this.hasEnded)
 					this.EndGame();
 			}
@@ -280,8 +285,8 @@ GameScreen.prototype = {
 						else if(typeNum == 3)
 							pos = this.mPlayer.mOrigGround + 200;
 						pos += this.floorOffset;
-						var height = this.RandomRange(1,4);
-						var width = this.RandomRange(1,5);
+						var height = this.RandomRange(0,4);
+						var width = height;
 						for(var x = 0; x < width; x++)
 						{
 							var xOffset = (48*width*0.5)-24;
@@ -390,7 +395,7 @@ GameScreen.prototype = {
 		//Background image
 		this.artLayer.addChild(new TGE.ParallaxPane().setup({
 			image : "gamescreen_moon",
-			worldY: 450,
+			worldY: 400,
 			trackingSpeed : -.006,
 		}));
 		
@@ -510,10 +515,21 @@ GameScreen.prototype = {
 			color : "white"
 		}));
 
-
+	    this.UILayer.addChild(new TGE.Button().setup({
+	    	x : 10+32,
+	    	y : this.height-32-10,
+	    	image : "pause",
+	    	numStates : 4,
+	        pressFunction : this.PauseGame.bind(this),
+	    }));
 
 		this.pauseText.x = (this.width/2)-(this.pauseText.width/2);
 	    
+	},
+
+	PauseGame : function()
+	{
+		this.isPaused = !this.isPaused;
 	},
 
 	PlayerHitCoin : function(params) 
@@ -533,7 +549,8 @@ GameScreen.prototype = {
 		// Stop sound
 		if(!this.mPlaying)
 			return;
-		this.mPlaying = false;			
+		this.mPlaying = false;
+		this.mPlayer.mVerticalSpeed = -3;		
 		TGE.Game.GetInstance().audioManager.StopAll();
 		this.deathCause = cause;
 		//Play sound

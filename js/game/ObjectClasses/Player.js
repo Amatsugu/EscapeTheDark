@@ -39,7 +39,7 @@ Player.prototype = {
     	this.mGame = params.gameScreen;
     	this.mOrigGround = this.mGroundHeight;
     	this.height = 128;
-    	this.width = 100;
+    	this.width = 80;
 		Player.superclass.setup.call(this, params);
 		this.SetupAnimations();
 		this.addChild(this.UILayer = new TGE.DisplayObjectContainer().setup({}));
@@ -115,11 +115,16 @@ Player.prototype = {
 		}
 		if(!this.mStopped)
 		{
+			if(this.mVerticalSpeed >= 1 || this.mVerticalSpeed <= -1)
+			{
+				this.canJump = false;
+			}
 			//Jump
 			if(this.mGame.mousedown)//Gets Player Input
 			{
 				if(this.canJump)
 				{
+					console.log("jump");
 					this.mVerticalSpeed = this.mJumpSpeed; //Apply Jump
 					this.PlayAnimation("fly");
 					this.mTotalJumps++;
@@ -151,10 +156,7 @@ Player.prototype = {
 		this.mCamSpeed = this.mHorizontalSpeed;
 		if(this.mCamDist > this.mDistance)
 			this.mCurSpeed += 1;
-		if(this.mPosition < this.mGroundHeight)
-		{
-			this.mPosition = this.mGroundHeight;
-		}
+		
 		if (this.mStopped)
 		{
 			this.PlayAnimation("stop");
@@ -179,12 +181,23 @@ Player.prototype = {
 			this.PlayAnimation("idle");
 		}
 
+		var playerRect = new TGE.Rectangle(this.mDistance-this.width/2, this.mPosition-this.height/2, this.width, this.height);
+		if(this.checkIntersection(playerRect))
+		{
+			this.mVerticalSpeed = 2;
+			this.PlayAnimation("idle");
+		}
+
 		if(this.mVerticalSpeed != 0)
 			this.PlayAnimation("fly");
 		this.mPosition += this.mVerticalSpeed; //Use vertical speed to determine vertical position
 		this.mDistance += this.mCurSpeed; //use horizontal speed to determine distance traveled
 		this.mCamDist += this.mCamSpeed; //uses the camera's speed to determine the camera's X position
-
+		if(this.mPosition < this.getGroundHeight()-1)
+		{
+			//this.mVerticalSpeed = 2;
+			this.mPosition = this.getGroundHeight()-1;
+		}
 		if(this.mPosition <= this.mGroundHeight)
 			this.canJump = true;
 		if(((this.mCamDist-2) - this.mGame.width/2) > this.mDistance) //Kill the player if he/she exits on screen left
@@ -240,6 +253,26 @@ Player.prototype = {
 			if((rect1.x >= rect2.x && rect1.x <= r2) || (r1 >= rect2.x && r1 <= r2))
 			{
 				ret = true;
+			}
+		}
+		return ret;
+	},
+
+
+	getGroundHeight : function()
+	{
+		var ret = this.mOrigGround;
+		var rect1 = new TGE.Rectangle(this.mDistance-this.width/2, this.mPosition-this.height/2, this.width, this.height);
+		for(var i = 0; i < this.colliders.length; i++)
+		{
+			rect2 = this.colliders[i];
+			var r1 = rect1.x + rect1.width;
+			var r2 = rect2.x + rect2.width;
+			if((rect1.x >= rect2.x && rect1.x <= r2) || (r1 >= rect2.x && r1 <= r2))
+			{
+				var y = rect2.y + rect2.height +this.mOrigGround;
+				if(y > ret)
+					ret = y+10;
 			}
 		}
 		return ret;
