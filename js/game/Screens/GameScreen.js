@@ -16,6 +16,7 @@ GameScreen = function(width, height) {
 	this.mDarkness;
 	this.floorOffset = 20;
 	this.elapsedTime = 0;
+	this.hasEnded = false;
 
 	//Obstacle generation parameters
 	this.mLastObstacle = 0;
@@ -85,7 +86,8 @@ GameScreen.prototype = {
 					this.mPlayer.mVerticalSpeed = 1;
 					this.ufo.y -= 1;
 					console.log("test");
-					this.EndGame();
+					if(!this.hasEnded)
+						this.EndGame();
 				}
 				this.ufo.x = this.Lerp(this.ufo.x, this.mPlayer.x, 0.1);
 				if(this.rightBeam.alpha <= .7)	
@@ -95,7 +97,8 @@ GameScreen.prototype = {
 				
 			}else
 			{
-				this.EndGame();
+				if(!this.hasEnded)
+					this.EndGame();
 			}
 			return;
 		}
@@ -360,7 +363,7 @@ GameScreen.prototype = {
     },
 
 	EndGame : function() {
-
+		this.hasEnded = true;
 		this.transitionToWindow({
 			windowClass : EndScreen,
 			fadeTime : 1.25,
@@ -528,6 +531,8 @@ GameScreen.prototype = {
 	PlayerHitObstacle : function(cause) 
 	{
 		// Stop sound
+		if(!this.mPlaying)
+			return;
 		this.mPlaying = false;			
 		TGE.Game.GetInstance().audioManager.StopAll();
 		this.deathCause = cause;
