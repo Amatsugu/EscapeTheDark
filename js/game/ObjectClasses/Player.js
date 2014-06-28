@@ -59,10 +59,10 @@ Player.prototype = {
 		
 		// Running animation
 		this.animArray["run"] = this.addChild(new TGE.SpriteSheetAnimation().setup({
-			image : "player_running",
+			image : "player_running2",
 			rows : 1,
-			columns : 10,
-			totalFrames : 10,
+			columns : 4,
+			totalFrames : 4,
 			fps : 10,
 			looping : true,
 			visible : false
@@ -92,9 +92,9 @@ Player.prototype = {
 
 
 		this.animArray["stop"] = this.addChild(new TGE.SpriteSheetAnimation().setup({
-	        image : "player_running",
+	        image : "player_running2",
 	        rows : 1,
-	        columns : 10,
+	        columns : 4,
 	        totalFrames : 1,
 	        fps : 8,
 	        looping : false,
@@ -184,20 +184,20 @@ Player.prototype = {
 		var playerRect = new TGE.Rectangle(this.mDistance-this.width/2, this.mPosition-this.height/2, this.width, this.height);
 		if(this.checkIntersection(playerRect))
 		{
-			this.mVerticalSpeed = 2;
+			this.mVerticalSpeed = 1;
 			this.PlayAnimation("idle");
 		}
-
-		if(this.mVerticalSpeed != 0)
-			this.PlayAnimation("fly");
-		this.mPosition += this.mVerticalSpeed; //Use vertical speed to determine vertical position
-		this.mDistance += this.mCurSpeed; //use horizontal speed to determine distance traveled
-		this.mCamDist += this.mCamSpeed; //uses the camera's speed to determine the camera's X position
 		if(this.mPosition < this.getGroundHeight()-1)
 		{
 			//this.mVerticalSpeed = 2;
-			this.mPosition = this.getGroundHeight()-1;
+			this.mPosition = this.getGroundHeight();
 		}
+		//if(this.mVerticalSpeed != 0)
+		//	this.PlayAnimation("fly");
+		this.mPosition += this.mVerticalSpeed; //Use vertical speed to determine vertical position
+		this.mDistance += this.mCurSpeed; //use horizontal speed to determine distance traveled
+		this.mCamDist += this.mCamSpeed; //uses the camera's speed to determine the camera's X position
+		
 		if(this.mPosition <= this.mGroundHeight)
 			this.canJump = true;
 		if(((this.mCamDist-2) - this.mGame.width/2) > this.mDistance) //Kill the player if he/she exits on screen left

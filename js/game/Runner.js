@@ -28,6 +28,7 @@ Runner = function()
         
         //Player pieces
         {id:'player_running',   		url:'char/run/NinjaRunAnim.png'},
+        {id:'player_running2',           url:'char/run/RunAnim.png'},
         {id:'player_flying', 			url:'char/jump/JumpingAnim.png'},
         {id:'player_idle',            url:'char/run/IdleAnim.png'},
 
