@@ -58,6 +58,8 @@ Runner = function()
 
         //FX
         {id:'beam',                     url:'fx/Beam.png'},
+        {id:'dk1',                     url:'fx/Darkness1.png'},
+        {id:'dk2',                     url:'fx/Darkness2.png'},
         
         //Sounds
         {id:'background_music',			url:'sounds/background_music.ogg',			backup_url:'sounds/background_music.mp3',		assetType:"audio"},

@@ -17,6 +17,7 @@ GameScreen = function(width, height) {
 	this.floorOffset = 20;
 	this.elapsedTime = 0;
 	this.hasEnded = false;
+	this.darkStage = 0;
 
 	//Obstacle generation parameters
 	this.mLastObstacle = 0;
@@ -78,6 +79,7 @@ GameScreen.prototype = {
 		{
 			if(this.causeOfDeath == "alien")
 			{
+				this.mPlayer.mCurSpeed = 0;
 				if(this.ufo.x < (this.mPlayer.x)+10)
 				{
 					this.rightBeam.alpha = this.Lerp(this.rightBeam.alpha, 1.1, .1);
@@ -101,10 +103,47 @@ GameScreen.prototype = {
 				
 			}else
 			{
+				console.log(this.darkStage);
 				this.mPlayer.mVerticalSpeed = 0;
-				if(!this.hasEnded)
-					this.EndGame();
+				if(this.darkStage == 0)
+				{
+					this.dark1.visible = true;
+					this.dark2.visible = true;
+					this.dark1.y = this.mPlayer.y;
+					this.dark2.y = this.mPlayer.y;
+					this.darkStage++;
+				}
+				if(this.darkStage >= 1)
+				{
+					this.dark1.y = this.mPlayer.y + (Math.sin(this.elapsedTime)*5);
+					this.dark2.y = this.mPlayer.y + (Math.sin(this.elapsedTime)*5);
+				}
+				if(this.darkStage == 1)
+				{
+					this.dark1.x = this.Lerp(this.dark1.x, 0, 0.1);
+					this.dark2.x = this.Lerp(this.dark2.x, 0, 0.1);
+					if(this.dark1.x > -10 || this.dark2.x > -10)
+						this.darkStage++;
+				}
+				if(this.darkStage == 2)
+				{
+					this.dark1.x = this.Lerp(this.dark1.x, -512, 0.1);
+					this.dark2.x = this.Lerp(this.dark2.x, -512, 0.1);
+					this.mPlayer.mCurSpeed = -5;
+					if(this.dark1.x < -500 || this.dark2.x < -500)
+						this.darkStage++;
+				}
+				if(this.darkStage == 3)
+				{
+					this.mPlayer.mCurSpeed = 0;
+					if(!this.hasEnded)
+						this.EndGame();
+				}
 			}
+			//Darkness
+			this.darkness.y = this.height/2 + (Math.sin(this.elapsedTime)*10);
+			this.darknessBack.y = this.height/2 + (Math.cos(this.elapsedTime)*10);
+			this.elapsedTime += 0.1;
 			return;
 		}
 		if(this.isPaused)
@@ -136,6 +175,7 @@ GameScreen.prototype = {
 		//Darkness
 		this.darkness.y = this.height/2 + (Math.sin(this.elapsedTime)*10);
 		this.darknessBack.y = this.height/2 + (Math.cos(this.elapsedTime)*10);
+		
 		//this.mPlayer.hasCollided = false;
 		// Read & make level
 		this.ReadNextEvent(event.elapsedTime);
@@ -498,7 +538,23 @@ GameScreen.prototype = {
 	    	registrationY : 0,
 	    	alpha : 0
 	    }));
+
+	    this.dark1 = this.UILayer.addChild(new TGE.Sprite().setup({
+	    	x : -512,
+	    	y : 0,
+	    	image : 'dk1',
+	    	visible : false,
+	    	registrationX : 0
+	    }));
 	    
+	    this.dark2 = this.UILayer.addChild(new TGE.Sprite().setup({
+	    	x : -512,
+	    	y : 0,
+	    	image : 'dk2',
+	    	visible : false,
+	    	registrationX : 0
+	    }));
+
 	    this.ufo = this.UILayer.addChild(new TGE.Sprite().setup({
 	    	x : this.width+50,
 	    	y : -50,

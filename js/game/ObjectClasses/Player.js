@@ -161,7 +161,7 @@ Player.prototype = {
 		{
 			this.PlayAnimation("stop");
 			//this.markForRemoval();
-			this.mCurSpeed = 0;
+			//this.mCurSpeed = 0;
 			//return;
 		}
 		var nX = this.mDistance + this.mCurSpeed;
