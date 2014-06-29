@@ -27,6 +27,8 @@ html, body
     font-family: Tahoma;
     font-size: 30px;
     background: black;
+	color:#FFF;
+	background-image:url(misc/background.jpg);
     -webkit-text-size-adjust: none; /* important, or your text resizes randomly on rotation! */
     -webkit-tap-highlight-color: transparent;
 }

@@ -4,7 +4,10 @@ Runner = function()
 
     var Brad = new Font();
     Brad.fontFamily = "Brady";
-    Brad.src = "assets/fonts/Brad.ttf";
+    //Brad.src = "assets/fonts/Brad.ttf";
+
+    TGE.LoadingWindow = LoadScreen;
+
      // load all assets for game
     this.assetManager.addAssets("required",[
         
