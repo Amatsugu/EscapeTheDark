@@ -124,7 +124,6 @@ Player.prototype = {
 			{
 				if(this.canJump)
 				{
-					console.log("jump");
 					this.mVerticalSpeed = this.mJumpSpeed; //Apply Jump
 					this.PlayAnimation("fly");
 					this.mTotalJumps++;

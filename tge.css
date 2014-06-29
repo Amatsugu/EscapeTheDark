@@ -42,7 +42,7 @@ html, body
     -ms-touch-action: none;
 }
 
-#wrong_orientation
+#wrong_orientation, #ShareIMG
 {
     background: black;
     position: absolute;
@@ -55,6 +55,14 @@ html, body
 }
 
 #wrong_orientation img
+{
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+}
+
+
+#ShareIMG img
 {
     display: block;
     margin: 0 auto;

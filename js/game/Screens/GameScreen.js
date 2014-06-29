@@ -88,7 +88,6 @@ GameScreen.prototype = {
 				{
 					this.mPlayer.mVerticalSpeed = 1;
 					this.ufo.y -= 1;
-					console.log("test");
 					if(this.ufo.y < 0)
 					{
 						if(!this.hasEnded)
