@@ -50,16 +50,18 @@ TutScreen.prototype = {
     Update : function(event) {
         if(this.isDone)
             return;
+        if(this.curScreen > 1)
+        {
+            this.Back();
+            this.isDone = true;
+            return;
+        }
         for(var i = 0; i < this.screens.length; i++)
         {
             var cur = this.screens[i];
             cur.x = this.Lerp(cur.x, (this.width*i)-(this.width*this.curScreen), 0.1);
         }
-        if(this.curScreen > 1)
-        {
-            this.Back();
-            this.isDone = true;
-        }
+        
     },
 
     Lerp : function(a, b, t)
