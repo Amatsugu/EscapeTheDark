@@ -15,6 +15,8 @@ StartScreen = function() {
             fps : 4,
             looping : true,
             visible : false,
+            height : this.height,
+            width : this.width,
             x : 0,
             y : 0,
             registrationX : 0,
@@ -22,6 +24,14 @@ StartScreen = function() {
         }));
 
     this.PlayAnimation("main");
+
+    this.addChild(new TGE.Sprite().setup({
+        image : 'title',
+        x : 0,
+        y : 0,
+        registrationX : 0,
+        registrationY : 0
+    }));
     
     //play button
     this.addChild(new TGE.Button().setup({

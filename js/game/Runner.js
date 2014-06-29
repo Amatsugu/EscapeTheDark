@@ -4,7 +4,7 @@ Runner = function()
 
     var Brad = new Font();
     Brad.fontFamily = "Brady";
-    Brad.src = "assets/fonts/Brad.ttf";
+    //Brad.src = "assets/fonts/Brad.ttf";
 
     TGE.LoadingWindow = LoadScreen;
 
@@ -40,6 +40,7 @@ Runner = function()
         {id:'gamescreen_middleground',  url:'screens/gamescreen_middleground.png'},
         {id:'cover',  url:'screens/CoverAnim.jpg'},
         {id:'tutBG',  url:'screens/TutBG.png'},
+        {id:'title', url:'screens/Title.png'},
         {id:'gamescreen_moon',  url:'screens/moon.png'},
            
         // Buttons
