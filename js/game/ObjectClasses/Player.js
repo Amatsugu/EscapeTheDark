@@ -83,9 +83,9 @@ Player.prototype = {
 		this.animArray["idle"] = this.addChild(new TGE.SpriteSheetAnimation().setup({
 	        image : "player_idle",
 	        rows : 1,
-	        columns : 7,
-	        totalFrames : 7,
-	        fps : 4,
+	        columns : 1,
+	        totalFrames : 1,
+	        fps : 8,
 	        looping : false,
 	        visible : false
 		}));
