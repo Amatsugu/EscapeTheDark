@@ -77,7 +77,7 @@ EndScreen.prototype = {
             y : 100,
             showLogin : false,
             disableLeaderboard : true,
-            shareMessage : "I'm Escaping the Darkness with a score of "+params.score+", try you hand at escaping.",
+            shareMessage : "I'm Escaping the Darkness with a score of "+params.score+", try your hand at escaping.",
         });
     
         // Update final totals
