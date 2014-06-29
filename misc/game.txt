@@ -16,6 +16,9 @@ lurking on the surface.
 ---Short Description---
 Escape Darkness and aliens that have taken over earth.
 
+---Key Words---
+Ninja, Aliens, Runner, Ramdom Levels, Infinite, Darkness, Escape
+
 ---Canvas Orientation---
 Landscape
 
