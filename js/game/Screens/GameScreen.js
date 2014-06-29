@@ -309,7 +309,7 @@ GameScreen.prototype = {
 							pos = this.mPlayer.mOrigGround + 100;
 						else if(typeNum == 6)
 							pos = this.mPlayer.mOrigGround + 200;
-						pos += this.floorOffset+16;
+						pos += this.floorOffset+10;
 						this.coinLayer.addChild(new Coin().setup({
 							worldX : this.mSpawnNextPos,
 							worldY : pos,

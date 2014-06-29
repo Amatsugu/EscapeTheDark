@@ -140,6 +140,7 @@ Player.prototype = {
 				this.mVerticalSpeed = 0;
 				this.PlayAnimation("run");
 				this.mPosition = this.mGroundHeight;
+				this.canJump = true;
 			}
 
 			if(this.mCurSpeed < this.mHorizontalSpeed)//Accelerate to match intended speed
@@ -186,6 +187,7 @@ Player.prototype = {
 		{
 			this.mVerticalSpeed = 1;
 			this.PlayAnimation("idle");
+			this.canJump = true;
 		}
 		if(this.mPosition < this.getGroundHeight()-1)
 		{

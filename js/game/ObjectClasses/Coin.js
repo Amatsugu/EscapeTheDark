@@ -25,8 +25,8 @@ Coin.prototype = {
 			this.animArray["alien"] = this.addChild(new TGE.SpriteSheetAnimation().setup({
 				image : "alien",
 				rows : 1,
-				columns : 4,
-				totalFrames : 4,
+				columns : 3,
+				totalFrames : 3,
 				fps : 8,
 				looping : true,
 				visible : false
@@ -98,7 +98,7 @@ Coin.prototype = {
 			{
 				this.mGame.GetPlayer().mStopped = true;
 				this.mGame.PlayerHitObstacle("alien");
-				this.markForRemoval();	
+				//this.markForRemoval();	
 				// //Play background music
 				// TGE.Game.GetInstance().audioManager.Play({ 
 				// 	id:'hitObstacle_sound', 

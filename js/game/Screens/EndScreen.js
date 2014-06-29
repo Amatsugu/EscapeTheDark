@@ -42,7 +42,7 @@ EndScreen.prototype = {
 
         // Display distance traveled
         this.addChild(this.distanceDisplay = new TGE.Text().setup({
-            x : 820,
+            x : 815,
             y : 48,
             color: "cyan",
             font : Font,
@@ -50,7 +50,7 @@ EndScreen.prototype = {
         
         // Display coins earned
         this.addChild(this.coinDisplay = new TGE.Text().setup({
-            x : 820,
+            x : 815,
             y : 92,
             color: "cyan",
             font :  Font,
@@ -58,7 +58,7 @@ EndScreen.prototype = {
 
         // Display Times jumped
         this.addChild(this.jumpsDisplay = new TGE.Text().setup({
-            x : 820,
+            x : 815,
             y : 137,
             color: "cyan",
             font :  Font,

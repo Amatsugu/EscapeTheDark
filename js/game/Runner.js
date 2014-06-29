@@ -33,7 +33,7 @@ Runner = function()
         {id:'startscreen_background',   url:'screens/startscreen_background.jpg'},
         {id:'endscreen_background',   	url:'screens/endscreen_background.jpg'},
         {id:'endscreen_background2',     url:'screens/endscreen_background_2.jpg'},
-        {id:'gamescreen_background',   	url:'screens/gamescreen_background.jpg'},
+        {id:'gamescreen_background',   	url:'screens/gamescreen_background.png'},
         {id:'gamescreen_ground',   		url:'screens/gamescreen_ground.png'},
         {id:'gamescreen_middleground',  url:'screens/gamescreen_middleground.png'},
         {id:'gamescreen_moon',  url:'screens/moon.png'},
