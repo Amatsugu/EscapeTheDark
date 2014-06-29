@@ -1,0 +1,29 @@
+﻿---Game Title---
+Escape The Dark
+
+---Short Game Title---
+Escape Dark
+
+---Description---
+Aliens have invaded earth and are controlling
+it’s inhabitants by clouding their minds
+with darkness.
+Use your superior speed and agility as a ninja
+to avoid being consumed by the darkness
+or getting captured by the aliens
+lurking on the surface.
+
+---Short Description---
+Escape Darkness and aliens that have taken over earth.
+
+---Canvas Orientation---
+Landscape
+
+---Canvas Dimensions---
+960x536
+
+---Primary Category---
+Infinte Runner
+
+---Features---
+Statistics for each game you play.
