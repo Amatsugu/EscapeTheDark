@@ -7,7 +7,7 @@ LoadScreen = function() {
     message[2] = "Training Ninja...";
     message[3] = "Landing Ufo...";
     message[4] = "Probing Earthlings...";
-    message[5] = "Illumenating Darkness...";
+    message[5] = "Illuminating Darkness...";
     var len = message.length-1;
     var msg = message[Math.floor(Math.random() * (len - 0 + 1)) + 0];
     if(msg == null)
