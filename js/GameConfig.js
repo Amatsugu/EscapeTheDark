@@ -22,7 +22,8 @@ var GameConfig = {
 	    
 	    "js/game/Screens/GameScreen.js",
 	    "js/game/Screens/EndScreen.js",
-	    "js/game/Screens/StartScreen.js"
+	    "js/game/Screens/StartScreen.js",
+        "js/game/Screens/TutScreen.js"
     ],
 
     CSS: [
