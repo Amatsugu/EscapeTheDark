@@ -4,7 +4,7 @@ Runner = function()
 
     var Brad = new Font();
     Brad.fontFamily = "Brady";
-    //Brad.src = "assets/fonts/Brad.ttf";
+    Brad.src = "assets/fonts/Brad.ttf";
 
     TGE.LoadingWindow = LoadScreen;
 
@@ -58,6 +58,7 @@ Runner = function()
         {id:'rightHUD',                   url:'screens/HUD_right.png'},
         {id:'tut1',                   url:'screens/tut/tut1.png'},
         {id:'tut2',                   url:'screens/tut/tut2.png'},
+        {id:'cred',                   url:'screens/tut/cred.png'},
 
 
         //FX

@@ -36,6 +36,14 @@ TutScreen.prototype = {
             image : "tut2"
         }));
 
+        this.screens[2] = this.addChild(new TGE.Sprite().setup({
+            x : this.width,
+            y : 0,
+            registrationX : 0,
+            registrationY : 0,
+            image : "cred"
+        }));
+
         this.addChild(new TGE.Button().setup({
             x : this.width-20-32,
             y : this.height-20-32,
@@ -50,7 +58,7 @@ TutScreen.prototype = {
     Update : function(event) {
         if(this.isDone)
             return;
-        if(this.curScreen > 1)
+        if(this.curScreen > this.screens.length-1)
         {
             this.Back();
             this.isDone = true;
