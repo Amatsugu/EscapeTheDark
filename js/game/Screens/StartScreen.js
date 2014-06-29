@@ -37,6 +37,15 @@ StartScreen = function() {
         visible : false,
         pressFunction : this.muteGame.bind(this),
     }));
+
+    this.addChild(new TGE.Button().setup({
+        x : 40+32+64,
+        y : this.height-20-32,
+        image: "tut",
+        numStates : 4,
+        pressFunction : this.startTut.bind(this),
+    }));
+    
     if(this.isMuted)
     {
         this.muteButton.visible = false;
@@ -72,6 +81,11 @@ StartScreen.prototype = {
             TGE.Game.GetInstance().audioManager.Unmute();
         }
         localStorage.setItem("isMuted", this.isMuted);
+    },
+
+    startTut : function()
+    {
+
     }
 	
 }

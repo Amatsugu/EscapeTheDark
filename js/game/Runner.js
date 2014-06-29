@@ -32,7 +32,6 @@ Runner = function()
         // Backgrounds
         {id:'startscreen_background',   url:'screens/startscreen_background.jpg'},
         {id:'endscreen_background',   	url:'screens/endscreen_background.jpg'},
-        {id:'endscreen_background2',     url:'screens/endscreen_background_2.jpg'},
         {id:'gamescreen_background',   	url:'screens/gamescreen_background.png'},
         {id:'gamescreen_ground',   		url:'screens/gamescreen_ground.png'},
         {id:'gamescreen_middleground',  url:'screens/gamescreen_middleground.png'},
@@ -44,6 +43,7 @@ Runner = function()
         {id:'mute',                     url:'buttons/Mute.png'},
         {id:'muted',                    url:'buttons/Muted.png'},
         {id:'pause',                    url:'buttons/Pause.png'},
+        {id:'tut',                    url:'buttons/Tutorial.png'},
         
         //UI
         {id:'distance_ui',   			 url:'distance_ui.png'},  
