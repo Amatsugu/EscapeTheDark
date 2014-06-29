@@ -38,12 +38,14 @@ EndScreen.prototype = {
             pressFunction : this.PlayAgain.bind(this),
         }));
 
+        var Font = "40px Brady";
+
         // Display distance traveled
         this.addChild(this.distanceDisplay = new TGE.Text().setup({
             x : 820,
             y : 48,
             color: "cyan",
-            font : "40px LOXO",
+            font : Font,
         }));
         
         // Display coins earned
@@ -51,7 +53,7 @@ EndScreen.prototype = {
             x : 820,
             y : 92,
             color: "cyan",
-            font :  "40px LOXO",
+            font :  Font,
         }));
 
         // Display Times jumped
@@ -59,7 +61,7 @@ EndScreen.prototype = {
             x : 820,
             y : 137,
             color: "cyan",
-            font :  "40px LOXO",
+            font :  Font,
         }));
         
         // Display final score
@@ -67,7 +69,7 @@ EndScreen.prototype = {
             x : 700,
             y : 300,
             color: "cyan",
-            font :  "50px LOXO",
+            font :  "50px Brady",
         }));
 
         this.tgsWidget = new TGS.Widget.CreateWidget({

@@ -479,7 +479,7 @@ GameScreen.prototype = {
 		}));
 
 
-		var fontSize = "45px LOXO";
+		var fontSize = "45px Brady";
 
 		this.rightHUD = this.UILayer.addChild(new TGE.Sprite().setup({
 	    	x : this.width-128,
@@ -567,7 +567,7 @@ GameScreen.prototype = {
 			x : this.width/2,
 			y : -50,
 			text : "Game Paused",
-			font : "35px LOXO",
+			font : "35px Brady",
 			color : "white"
 		}));
 

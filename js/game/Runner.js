@@ -2,9 +2,9 @@ Runner = function()
 {
     Runner.superclass.constructor.call(this);
 
-    var LOXO = new Font();
-    LOXO.fontFamily = "LOXO";
-    //LOXO.src = "assets/fonts/LOXO.ttf";
+    var Brad = new Font();
+    Brad.fontFamily = "Brady";
+    Brad.src = "assets/fonts/Brad.ttf";
      // load all assets for game
     this.assetManager.addAssets("required",[
         
@@ -17,10 +17,6 @@ Runner = function()
         {id:'Darkness',  url:'widgets/darkness.png'},
         {id:'DarknessBack', url:'widgets/darkness-back.png'},
        
-        //Moving Obstacles
-        {id:'moving_obstacle_A', 		url:'movingObstacles/moving_obstacle_A.png'},
-        {id:'moving_obstacle_B', 		url:'movingObstacles/moving_obstacle_B.png'},
-        
         //Coins
         {id:'coin',   					url:'coin.png'},
         {id:'coinAnim',                     url:'coinAnim.png'},
