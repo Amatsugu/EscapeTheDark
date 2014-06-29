@@ -44,12 +44,15 @@ Runner = function()
         {id:'muted',                    url:'buttons/Muted.png'},
         {id:'pause',                    url:'buttons/Pause.png'},
         {id:'tut',                    url:'buttons/Tutorial.png'},
+        {id:'next',                    url:'buttons/Next.png'},
         
         //UI
         {id:'distance_ui',   			 url:'distance_ui.png'},  
         {id:'orb_ui',                    url:'orb_ui.png'},
         {id:'leftHUD',                   url:'screens/HUD_left.png'},
         {id:'rightHUD',                   url:'screens/HUD_right.png'},
+        {id:'tut1',                   url:'screens/tut/tut1.png'},
+        {id:'tut2',                   url:'screens/tut/tut2.png'},
 
 
         //FX

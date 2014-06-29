@@ -85,7 +85,10 @@ StartScreen.prototype = {
 
     startTut : function()
     {
-
+        this.transitionToWindow({
+            windowClass : TutScreen,
+            fadeTime : 0.75
+        });
     }
 	
 }
