@@ -17,7 +17,7 @@ TutScreen.prototype = {
         this.addChild(new TGE.Sprite().setup({
                 x : this.percentageOfWidth(0.5),
                 y : this.percentageOfHeight(0.5),
-                image: "endscreen_background",
+                image: "tutBG",
             }));
         
         this.screens[0] = this.addChild(new TGE.Sprite().setup({

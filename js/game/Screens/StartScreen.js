@@ -2,14 +2,26 @@ StartScreen = function() {
     StartScreen.superclass.constructor.apply(this, arguments);
     
     this.isMuted = false;
+    this.animArray = [];
     if(localStorage.getItem("isMuted") != null)
         this.isMuted = localStorage.getItem("isMuted");
     //background image
-    this.addChild(new TGE.Sprite().setup({
-    	x : this.percentageOfWidth(0.5),
-        y : this.percentageOfHeight(0.5),
-    	image: "startscreen_background",
-    }));
+
+    this.animArray["main"] = this.addChild(new TGE.SpriteSheetAnimation().setup({
+            image : "cover",
+            rows : 3,
+            columns : 4,
+            totalFrames : 12,
+            fps : 4,
+            looping : true,
+            visible : false,
+            x : 0,
+            y : 0,
+            registrationX : 0,
+            registrationY : 0
+        }));
+
+    this.PlayAnimation("main");
     
     //play button
     this.addChild(new TGE.Button().setup({
@@ -89,6 +101,24 @@ StartScreen.prototype = {
             windowClass : TutScreen,
             fadeTime : 0.75
         });
+    },
+
+    PlayAnimation : function(name) 
+    {
+    
+        // If it's already started playing, don't start it again
+        if (this.currentAnim == this.animArray[name]) return;
+        
+        // Stop playing old animation if there is one
+        if (this.currentAnim != null) {
+            this.currentAnim.visible = false;
+            this.currentAnim.gotoAndStop(0);
+        }
+        
+        // Start playing next animation
+        this.currentAnim = this.animArray[name];
+        this.currentAnim.visible = true;
+        this.currentAnim.gotoAndPlay(0);
     }
 	
 }

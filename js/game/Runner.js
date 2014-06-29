@@ -4,7 +4,7 @@ Runner = function()
 
     var Brad = new Font();
     Brad.fontFamily = "Brady";
-   // Brad.src = "assets/fonts/Brad.ttf";
+    Brad.src = "assets/fonts/Brad.ttf";
      // load all assets for game
     this.assetManager.addAssets("required",[
         
@@ -35,6 +35,8 @@ Runner = function()
         {id:'gamescreen_background',   	url:'screens/gamescreen_background.png'},
         {id:'gamescreen_ground',   		url:'screens/gamescreen_ground.png'},
         {id:'gamescreen_middleground',  url:'screens/gamescreen_middleground.png'},
+        {id:'cover',  url:'screens/CoverAnim.jpg'},
+        {id:'tutBG',  url:'screens/TutBG.png'},
         {id:'gamescreen_moon',  url:'screens/moon.png'},
            
         // Buttons
