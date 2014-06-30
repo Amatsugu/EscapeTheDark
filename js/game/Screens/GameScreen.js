@@ -488,12 +488,10 @@ GameScreen.prototype = {
 
 		this.distanceDisplay = this.UILayer.addChild(new TGE.Text().setup({
 			x : this.width,
-			y : 25,
+			y : 20,
 			text : "0",
 			font : fontSize,
-			color : "cyan",
-			align : "right",
-			size : 16
+			color : "cyan"
 		}));
 		
 		//Feet icon that sits in front of the distance traveled number
@@ -514,7 +512,7 @@ GameScreen.prototype = {
 		//Text that displays coins collected
 		this.coinDisplay = this.UILayer.addChild(new TGE.Text().setup({
 			x : 160,
-			y : 25,
+			y : 20,
 			text : "0",
 			font : fontSize,
 			color : "cyan"

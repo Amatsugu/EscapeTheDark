@@ -30,7 +30,7 @@ EndScreen.prototype = {
         {
             
         }
-
+        
         // Try Again button
         this.addChild(new TGE.Button().setup({
             x : 700,
@@ -48,45 +48,46 @@ EndScreen.prototype = {
             pressFunction : this.ToMain.bind(this),
         }));
 
-        var Font = "40px Brady";
-
+        var Font = "36px Brady";
+        var x1 = 813;
         // Display distance traveled
         this.addChild(this.distanceDisplay = new TGE.Text().setup({
-            x : 815,
-            y : 48,
+            x : x1,
+            y : 40,
             color: "cyan",
             font : Font,
         }));
         
         // Display coins earned
         this.addChild(this.coinDisplay = new TGE.Text().setup({
-            x : 815,
-            y : 92,
+            x : x1,
+            y : 85,
             color: "cyan",
             font :  Font,
         }));
 
         // Display Times jumped
         this.addChild(this.jumpsDisplay = new TGE.Text().setup({
-            x : 815,
-            y : 137,
+            x : x1,
+            y : 130,
             color: "cyan",
             font :  Font,
         }));
         
+        var x2 = 690;
         // Display final score
         this.addChild(this.scoreDisplay = new TGE.Text().setup({
-            x : 700,
-            y : 290,
+            x : x2,
+            y : 280,
             color: "cyan",
             font :  "50px Brady",
         }));
 
         this.addChild(this.best = new TGE.Text().setup({
-            x : 700,
+            x : x2,
             y : 325,
-            color: "FF0000",
-            font :  "30px Brady",
+            color: "ff0000",
+            font :  "24px Brady",
         }));
 
         this.tgsWidget = new TGS.Widget.CreateWidget({

@@ -2,8 +2,8 @@ Runner = function()
 {
     Runner.superclass.constructor.call(this);
 
-    var Brad = new Font();
-    Brad.fontFamily = "Brady";
+    //var Brad = new Font();
+    //Brad.fontFamily = "Brady";
     //Brad.src = "assets/fonts/Brad.ttf";
 
     TGE.LoadingWindow = LoadScreen;

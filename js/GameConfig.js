@@ -4,7 +4,7 @@ var GameConfig = {
     LOG_LEVEL: 4,
 
     GAME_ID: 'com.tresensa.test-game',
-    TITLE: 'TreSensa Starter Template',
+    TITLE: 'Escape The Dark',
     VERSION: '1.0.0',
 
     ORIENTATION: 'landscape',   
@@ -28,6 +28,7 @@ var GameConfig = {
     ],
 
     CSS: [
+        "assets/fonts/font.css"
     ],
 
     EXCLUDE: [
@@ -44,7 +45,7 @@ var GameConfig = {
 
     TGE: {
         ENABLED: true,
-        FONT_LOADER: true,
+        FONT_LOADER: false,
         VERSION: '1.0'
     }
 };

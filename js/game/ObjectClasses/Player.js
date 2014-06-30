@@ -151,11 +151,12 @@ Player.prototype = {
 				this.mCurSpeed = this.mHorizontalSpeed;
 				//Sthis.PlayAnimation("run");
 			}
+			if(this.mCamDist > this.mDistance)
+				this.mCurSpeed += 1;
 		}
 
 		this.mCamSpeed = this.mHorizontalSpeed;
-		if(this.mCamDist > this.mDistance)
-			this.mCurSpeed += 1;
+		
 		
 		if (this.mStopped)
 		{
@@ -203,7 +204,7 @@ Player.prototype = {
 			this.canJump = true;
 		if(((this.mCamDist-2) - this.mGame.width/2) > this.mDistance) //Kill the player if he/she exits on screen left
 		{
-			this.mGame.GetPlayer().mStopped = true;
+			this.mStopped = true;
 			this.mGame.PlayerHitObstacle("dark");
 			//this.markForRemoval();
 		}
