@@ -38,7 +38,7 @@ Runner = function()
         {id:'gamescreen_background',   	url:'screens/gamescreen_background.png'},
         {id:'gamescreen_ground',   		url:'screens/gamescreen_ground.png'},
         {id:'gamescreen_middleground',  url:'screens/gamescreen_middleground.png'},
-        {id:'cover',  url:'screens/CoverAnim.jpg'},
+        {id:'cover',  url:'screens/CoverAnimS.jpg'},
         {id:'tutBG',  url:'screens/TutBG.png'},
         {id:'title', url:'screens/Title.png'},
         {id:'gamescreen_moon',  url:'screens/moon.png'},
