@@ -324,7 +324,7 @@ GameScreen.prototype = {
 						else if(typeNum == 3)
 							pos = this.mPlayer.mOrigGround + 200;
 						pos += this.floorOffset;
-						var height = this.RandomRange(0,4);
+						var height = this.RandomRange(0,3);
 						var width = height;
 						for(var x = 0; x < width; x++)
 						{
