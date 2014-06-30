@@ -34,10 +34,18 @@ EndScreen.prototype = {
         // Try Again button
         this.addChild(new TGE.Button().setup({
             x : 700,
-            y : 435,
+            y : 400,
             image: "playagain_button",
             numStates : 4,
             pressFunction : this.PlayAgain.bind(this),
+        }));
+
+        this.addChild(new TGE.Button().setup({
+            x : 700,
+            y : 485 ,
+            image: "main_button",
+            numStates : 4,
+            pressFunction : this.ToMain.bind(this),
         }));
 
         var Font = "40px Brady";
@@ -120,7 +128,20 @@ EndScreen.prototype = {
 
     PlayAgain : function() {
        this.tgsWidget.close(this.ReStart.bind(this));   
-    }
+    },
+
+
+    ToMain : function() {
+       this.tgsWidget.close(this.GoMain.bind(this));   
+    },
+
+    GoMain : function()
+    {
+        this.transitionToWindow({
+            windowClass : StartScreen,
+            fadeTime : 0.25
+        });
+    },
 }
 
 

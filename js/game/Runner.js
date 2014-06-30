@@ -46,6 +46,7 @@ Runner = function()
         // Buttons
         {id:'play_button',   			url:'buttons/play_button.png'},
         {id:'playagain_button',   		url:'buttons/playagain_button.png'},
+        {id:'main_button',         url:'buttons/main_button.png'},
         {id:'mute',                     url:'buttons/Mute.png'},
         {id:'muted',                    url:'buttons/Muted.png'},
         {id:'pause',                    url:'buttons/Pause.png'},
