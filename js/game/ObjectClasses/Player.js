@@ -115,7 +115,7 @@ Player.prototype = {
 		}
 		if(!this.mStopped)
 		{
-			if(this.mVerticalSpeed >= 1 || this.mVerticalSpeed <= -1)
+			if(this.mVerticalSpeed >= 3 || this.mVerticalSpeed <= -3)
 			{
 				this.canJump = false;
 			}
@@ -214,6 +214,8 @@ Player.prototype = {
 		this.mHorizontalSpeed += this.mAcceleration;
 		this.hasCollided = false;
 		this.mGame.mousedown = false;
+		if(this.colliders.length > 8)
+			this.colliders.splice(0, 1);
 	},
 
 	checkCollision : function(oX,oY,ob, id)

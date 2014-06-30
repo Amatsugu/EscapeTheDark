@@ -19,10 +19,13 @@ StartScreen = function() {
             width : this.width,
             x : 0,
             y : 0,
+            scaleX : 1,
+            scaleY : 1,
             registrationX : 0,
             registrationY : 0
         }));
-
+    this.animArray["main"].height = this.height;
+    this.animArray["main"].width = this.width;
     this.PlayAnimation("main");
 
     this.addChild(new TGE.Sprite().setup({
@@ -80,12 +83,12 @@ StartScreen = function() {
 
 StartScreen.prototype = {
 
-	gotoGameScreen : function() {
-		this.transitionToWindow({
-			windowClass : GameScreen,
-			fadeTime : 0.75
-		});
-	},
+    gotoGameScreen : function() {
+        this.transitionToWindow({
+            windowClass : GameScreen,
+            fadeTime : 0.75
+        });
+    },
 
     muteGame : function()
     {
@@ -130,7 +133,7 @@ StartScreen.prototype = {
         this.currentAnim.visible = true;
         this.currentAnim.gotoAndPlay(0);
     }
-	
+    
 }
 
 extend(StartScreen, TGE.Window);

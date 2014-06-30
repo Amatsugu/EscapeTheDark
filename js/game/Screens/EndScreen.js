@@ -3,7 +3,9 @@ EndScreen = function() {
     
     // Background image
     
-    
+    this.bestScore = 0;
+    if(localStorage.getItem("bestScore") != null)
+        this.bestScore = localStorage.getItem("bestScore");
     
     
     
@@ -67,9 +69,16 @@ EndScreen.prototype = {
         // Display final score
         this.addChild(this.scoreDisplay = new TGE.Text().setup({
             x : 700,
-            y : 300,
+            y : 290,
             color: "cyan",
             font :  "50px Brady",
+        }));
+
+        this.addChild(this.best = new TGE.Text().setup({
+            x : 700,
+            y : 325,
+            color: "FF0000",
+            font :  "30px Brady",
         }));
 
         this.tgsWidget = new TGS.Widget.CreateWidget({
@@ -85,6 +94,18 @@ EndScreen.prototype = {
         this.distanceDisplay.text = params.distance.toString();
         this.scoreDisplay.text = params.score.toString();
         this.jumpsDisplay.text = params.jumps.toString();
+
+        if(params.score > this.bestScore)
+        {
+            localStorage.setItem("bestScore", params.score);
+            this.best.color = "FFAE00";
+            this.best.text = "New Highscore!";
+        }
+        else
+        {
+            this.best.text = "Your Highscore: " + this.bestScore;
+        }
+
         
         return this;
     },

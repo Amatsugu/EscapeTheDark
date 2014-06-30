@@ -40,9 +40,9 @@ Coin.prototype = {
 				image : "coinAnim",
 				rows : 1,
 				columns : 4,
-				totalFrames : 4,
-				fps : 10,
-				looping : true,
+				totalFrames : 1,
+				fps : 1,
+				looping : false,
 				visible : false
 			}));
 			this.PlayAnimation("glow");
@@ -76,8 +76,11 @@ Coin.prototype = {
 	DetectCollisions : function(event)
 	{
 		var player = this.mGame.GetPlayer();
+		if(player.worldX < this.worldX - 64 - this.width/2)
+			return;
 		var rect2 = new TGE.Rectangle(player.worldX - player.width/2, player.worldY - player.height/2, player.width, player.height);
 		var rect1 = new TGE.Rectangle(this.worldX - this.width/2, this.worldY - this.height/2, this.width, this.height);
+		
 		//console.log(this.width);
 
 		var ret = false;
