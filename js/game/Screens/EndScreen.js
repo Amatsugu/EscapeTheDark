@@ -12,8 +12,6 @@ EndScreen = function() {
     return this;
 }
 
-
-
 EndScreen.prototype = {
 
     setup : function(params) {
@@ -23,26 +21,19 @@ EndScreen.prototype = {
                 y : this.percentageOfHeight(0.5),
                 image: "endscreen_background",
             }));
-        if(params.death == "alien")
-        {
-            
-        }else
-        {
-            
-        }
         
         // Try Again button
         this.addChild(new TGE.Button().setup({
-            x : 700,
-            y : 400,
+            x : 440+205-10,
+            y : 425,
             image: "playagain_button",
             numStates : 4,
             pressFunction : this.PlayAgain.bind(this),
         }));
 
         this.addChild(new TGE.Button().setup({
-            x : 700,
-            y : 485 ,
+            x : 440+200+205-10,
+            y : 425 ,
             image: "main_button",
             numStates : 4,
             pressFunction : this.ToMain.bind(this),
@@ -54,7 +45,7 @@ EndScreen.prototype = {
         this.addChild(this.distanceDisplay = new TGE.Text().setup({
             x : x1,
             y : 40,
-            color: "cyan",
+            color: "00a9ff",
             font : Font,
         }));
         
@@ -62,7 +53,7 @@ EndScreen.prototype = {
         this.addChild(this.coinDisplay = new TGE.Text().setup({
             x : x1,
             y : 85,
-            color: "cyan",
+            color: "00a9ff",
             font :  Font,
         }));
 
@@ -70,7 +61,7 @@ EndScreen.prototype = {
         this.addChild(this.jumpsDisplay = new TGE.Text().setup({
             x : x1,
             y : 130,
-            color: "cyan",
+            color: "00a9ff",
             font :  Font,
         }));
         
@@ -79,14 +70,14 @@ EndScreen.prototype = {
         this.addChild(this.scoreDisplay = new TGE.Text().setup({
             x : x2,
             y : 280,
-            color: "cyan",
+            color: "00a9ff",
             font :  "50px Brady",
         }));
 
         this.addChild(this.best = new TGE.Text().setup({
             x : x2,
             y : 325,
-            color: "ff0000",
+            color: "c50013",
             font :  "24px Brady",
         }));
 

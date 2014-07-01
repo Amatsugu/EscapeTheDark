@@ -5,6 +5,10 @@ StartScreen = function() {
     this.animArray = [];
     if(localStorage.getItem("isMuted") != null)
         this.isMuted = localStorage.getItem("isMuted");
+    if(this.isMuted == "true")
+        this.isMuted = true;
+    else
+        this.isMuted = false;
     //background image
 
     this.animArray["main"] = this.addChild(new TGE.SpriteSheetAnimation().setup({
@@ -88,7 +92,7 @@ StartScreen = function() {
         pressFunction : this.startTut.bind(this),
     }));
     
-    if(this.isMuted)
+    if(this.isMuted == true)
     {
         this.muteButton.visible = false;
         this.mutedButton.visible = true;

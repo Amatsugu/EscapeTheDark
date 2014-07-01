@@ -491,7 +491,7 @@ GameScreen.prototype = {
 			y : 20,
 			text : "0",
 			font : fontSize,
-			color : "cyan"
+			color : "00a9ff"
 		}));
 		
 		//Feet icon that sits in front of the distance traveled number
@@ -515,7 +515,7 @@ GameScreen.prototype = {
 			y : 20,
 			text : "0",
 			font : fontSize,
-			color : "cyan"
+			color : "00a9ff"
 		}));
 		
 		//Orb UI
