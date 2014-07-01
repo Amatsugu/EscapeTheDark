@@ -21,31 +21,32 @@ Runner = function()
         {id:'DarknessBack', url:'widgets/darkness-back.png'},
        
         //Coins
-        {id:'coin',   					url:'coin.png'},
+        {id:'coin',                     url:'coin.png'},
         {id:'coinAnim',                     url:'coinAnim.png'},
         
         
         //Player pieces
-        {id:'player_running',   		url:'char/run/NinjaRunAnim.png'},
+        {id:'player_running',           url:'char/run/NinjaRunAnim.png'},
         {id:'player_running2',           url:'char/run/RunAnim.png'},
-        {id:'player_flying', 			url:'char/jump/JumpingAnim.png'},
+        {id:'player_flying',            url:'char/jump/JumpingAnim.png'},
         {id:'player_idle',            url:'char/run/IdleAnim.png'},
 
 
         // Backgrounds
         {id:'startscreen_background',   url:'screens/startscreen_background.jpg'},
-        {id:'endscreen_background',   	url:'screens/endscreen_background.jpg'},
-        {id:'gamescreen_background',   	url:'screens/gamescreen_background.png'},
-        {id:'gamescreen_ground',   		url:'screens/gamescreen_ground.png'},
+        {id:'endscreen_background',     url:'screens/endscreen_background.jpg'},
+        {id:'gamescreen_background',    url:'screens/gamescreen_background.png'},
+        {id:'gamescreen_ground',        url:'screens/gamescreen_ground.png'},
         {id:'gamescreen_middleground',  url:'screens/gamescreen_middleground.png'},
-        {id:'cover',  url:'screens/CoverAnimS.jpg'},
+        {id:'cover',  url:'screens/StarAnim.jpg'},
+        {id:'ninja',  url:'screens/NinjaAnim.png'},
         {id:'tutBG',  url:'screens/TutBG.png'},
         {id:'title', url:'screens/Title.png'},
         {id:'gamescreen_moon',  url:'screens/moon.png'},
            
         // Buttons
-        {id:'play_button',   			url:'buttons/play_button.png'},
-        {id:'playagain_button',   		url:'buttons/playagain_button.png'},
+        {id:'play_button',              url:'buttons/play_button.png'},
+        {id:'playagain_button',         url:'buttons/playagain_button.png'},
         {id:'main_button',         url:'buttons/main_button.png'},
         {id:'mute',                     url:'buttons/Mute.png'},
         {id:'muted',                    url:'buttons/Muted.png'},
@@ -54,7 +55,7 @@ Runner = function()
         {id:'next',                    url:'buttons/Next.png'},
         
         //UI
-        {id:'distance_ui',   			 url:'distance_ui.png'},  
+        {id:'distance_ui',               url:'distance_ui.png'},  
         {id:'orb_ui',                    url:'orb_ui.png'},
         {id:'leftHUD',                   url:'screens/HUD_left.png'},
         {id:'rightHUD',                   url:'screens/HUD_right.png'},
@@ -69,9 +70,9 @@ Runner = function()
         {id:'dk2',                     url:'fx/Darkness2.png'},
         
         //Sounds
-        {id:'background_music',			url:'sounds/background_music.ogg',			backup_url:'sounds/background_music.mp3',		assetType:"audio"},
-        {id:'hitObstacle_sound',		url: 'sounds/hitObstacle_sound.ogg',		backup_url:'sounds/hitObstacle_sound.mp3',		assetType:"audio"},
-        {id:'hitCoin_sound',			url:'sounds/hitCoin_sound.ogg',				backup_url:'sounds/hitCoin_sound.mp3',			assetType:"audio"}, 
+        {id:'background_music',         url:'sounds/background_music.ogg',          backup_url:'sounds/background_music.mp3',       assetType:"audio"},
+        {id:'hitObstacle_sound',        url: 'sounds/hitObstacle_sound.ogg',        backup_url:'sounds/hitObstacle_sound.mp3',      assetType:"audio"},
+        {id:'hitCoin_sound',            url:'sounds/hitCoin_sound.ogg',             backup_url:'sounds/hitCoin_sound.mp3',          assetType:"audio"}, 
         {id:'hitDarkness_sound',        url:'sounds/hitDarkness_sound.ogg',         backup_url:'sounds/hitDarkness_sound.mp3',      assetType:"audio"}
       ]);
 

@@ -9,12 +9,12 @@ StartScreen = function() {
 
     this.animArray["main"] = this.addChild(new TGE.SpriteSheetAnimation().setup({
             image : "cover",
-            rows : 3,
-            columns : 4,
-            totalFrames : 12,
+            rows : 1,
+            columns : 2,
+            totalFrames : 2,
             fps : 4,
             looping : true,
-            visible : false,
+            visible : true,
             height : this.height,
             width : this.width,
             x : 0,
@@ -26,8 +26,25 @@ StartScreen = function() {
         }));
     this.animArray["main"].height = this.height;
     this.animArray["main"].width = this.width;
-    this.PlayAnimation("main");
+    this.animArray['main'].gotoAndPlay(0);
 
+    this.animArray["ninja"] = this.addChild(new TGE.SpriteSheetAnimation().setup({
+            image : "ninja",
+            rows : 1,
+            columns : 6,
+            totalFrames : 6,
+            fps : 4,
+            looping : true,
+            visible : true,
+            x : 0,
+            y : this.height,
+            scaleX : 1,
+            scaleY : 1,
+            registrationX : 0,
+            registrationY : 1
+        }));
+
+    this.animArray['ninja'].gotoAndPlay(0);
     this.addChild(new TGE.Sprite().setup({
         image : 'title',
         x : 0,
