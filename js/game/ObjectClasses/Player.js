@@ -297,7 +297,8 @@ Player.prototype = {
 				{
 					ret = true;
 				}
-			}
+			}else
+				continue;
 		}
 		return ret;
 	},
