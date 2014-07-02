@@ -6,7 +6,7 @@ EndScreen = function() {
     this.bestScore = 0;
     if(localStorage.getItem("bestScore") != null)
         this.bestScore = localStorage.getItem("bestScore");
-    
+    TGE.Game.GetInstance().audioManager.StopAll();
     
     
     return this;

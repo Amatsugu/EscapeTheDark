@@ -151,7 +151,7 @@ Player.prototype = {
 				this.mCurSpeed = this.mHorizontalSpeed;
 				//Sthis.PlayAnimation("run");
 			}
-			if(this.mCamDist > this.mDistance)
+			if(this.mCamDist+(this.mGame.width/4) > this.mDistance)
 				this.mCurSpeed += 1;
 		}
 

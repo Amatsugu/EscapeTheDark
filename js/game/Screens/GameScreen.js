@@ -35,6 +35,7 @@ GameScreen.prototype = {
 	setup : function() {
 		
 		//Setup camera
+		TGE.Game.GetInstance().audioManager.StopAll();
 		TGE.Game.GetInstance().mCameraLocation = new TGE.Point();
 
 		//Setup layers
@@ -418,7 +419,7 @@ GameScreen.prototype = {
 
 	EndGame : function() {
 		this.hasEnded = true;
-		TGE.Game.GetInstance().audioManager.StopAll();
+		
 		this.transitionToWindow({
 			windowClass : EndScreen,
 			fadeTime : 1.25,
