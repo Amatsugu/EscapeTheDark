@@ -71,9 +71,9 @@ Runner = function()
         
         //Sounds
         {id:'background_music',         url:'sounds/background_music.ogg',          backup_url:'sounds/background_music.mp3',       assetType:"audio"},
-        {id:'hitObstacle_sound',        url: 'sounds/hitObstacle_sound.ogg',        backup_url:'sounds/hitObstacle_sound.mp3',      assetType:"audio"},
-        {id:'hitCoin_sound',            url:'sounds/hitCoin_sound.ogg',             backup_url:'sounds/hitCoin_sound.mp3',          assetType:"audio"}, 
-        {id:'hitDarkness_sound',        url:'sounds/hitDarkness_sound.ogg',         backup_url:'sounds/hitDarkness_sound.mp3',      assetType:"audio"}
+        {id:'hitObstacle_sound',        url: 'sounds/Abduct.wav',        backup_url:'sounds/Abduct.mp3',      assetType:"audio"},
+        {id:'hitCoin_sound',            url:'sounds/Coin.wav',             backup_url:'sounds/Coin.mp3',          assetType:"audio"}, 
+        {id:'hitDarkness_sound',        url:'sounds/Darkness.wav',         backup_url:'sounds/Darkness.mp3',      assetType:"audio"}
       ]);
 
     TGE.FirstGameWindow = StartScreen;//GameScreen;//TODO Change to StartScreen once finished.
