@@ -62,6 +62,7 @@ Runner = function()
         {id:'tut1',                   url:'screens/tut/tut1.png'},
         {id:'tut2',                   url:'screens/tut/tut2.png'},
         {id:'cred',                   url:'screens/tut/cred.png'},
+        {id:'cred2',                   url:'screens/tut/cred2.png'},
 
 
         //FX
@@ -70,7 +71,9 @@ Runner = function()
         {id:'dk2',                     url:'fx/Darkness2.png'},
         
         //Sounds
-        {id:'background_music',         url:'sounds/background_music.ogg',          backup_url:'sounds/background_music.mp3',       assetType:"audio"},
+        {id:'background_music',         url:'sounds/The Complex.ogg',          backup_url:'sounds/The Complex.mp3',       assetType:"audio"},
+        {id:'menuMusic',         url:'sounds/Undaunted.ogg',          backup_url:'sounds/Undaunted.mp3',       assetType:"audio"},
+        {id:'AlienFly',         url:'sounds/AlienFly.wav',          backup_url:'sounds/AlienFly.mp3',       assetType:"audio"},
         {id:'hitObstacle_sound',        url: 'sounds/Abduct.wav',        backup_url:'sounds/Abduct.mp3',      assetType:"audio"},
         {id:'hitCoin_sound',            url:'sounds/Coin.wav',             backup_url:'sounds/Coin.mp3',          assetType:"audio"}, 
         {id:'hitDarkness_sound',        url:'sounds/Darkness.wav',         backup_url:'sounds/Darkness.mp3',      assetType:"audio"}

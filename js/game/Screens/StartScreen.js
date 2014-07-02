@@ -3,14 +3,14 @@ StartScreen = function() {
     
     this.isMuted = false;
     this.animArray = [];
-    if(localStorage.getItem("isMuted") != null)
-        this.isMuted = localStorage.getItem("isMuted");
+    if(!localStorage.isMuted)
+        localStorage.setItem("isMuted", false);
+    this.isMuted = localStorage.getItem("isMuted");
     if(this.isMuted == "true")
         this.isMuted = true;
     else
         this.isMuted = false;
     //background image
-
     this.animArray["main"] = this.addChild(new TGE.SpriteSheetAnimation().setup({
             image : "cover",
             rows : 1,
@@ -98,13 +98,17 @@ StartScreen = function() {
         this.mutedButton.visible = true;
         TGE.Game.GetInstance().audioManager.Mute();
     }
-  
+    TGE.Game.GetInstance().audioManager.Play({ 
+            id:'menuMusic', 
+            loop:'1' 
+    });
 }
 
 
 StartScreen.prototype = {
 
     gotoGameScreen : function() {
+        TGE.Game.GetInstance().audioManager.StopAll();
         this.transitionToWindow({
             windowClass : GameScreen,
             fadeTime : 0.75
@@ -125,6 +129,10 @@ StartScreen.prototype = {
             this.muteButton.visible = true;
             this.mutedButton.visible = false;
             TGE.Game.GetInstance().audioManager.Unmute();
+            TGE.Game.GetInstance().audioManager.Play({ 
+                id:'menuMusic', 
+                loop:'1' 
+            });
         }
         localStorage.setItem("isMuted", this.isMuted);
     },

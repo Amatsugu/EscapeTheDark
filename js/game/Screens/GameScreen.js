@@ -18,6 +18,7 @@ GameScreen = function(width, height) {
 	this.elapsedTime = 0;
 	this.hasEnded = false;
 	this.darkStage = 0;
+	this.soundPlay = false;
 
 	//Obstacle generation parameters
 	this.mLastObstacle = 0;
@@ -83,6 +84,15 @@ GameScreen.prototype = {
 				if(this.ufo.x < (this.mPlayer.x)+10)
 				{
 					this.rightBeam.alpha = this.Lerp(this.rightBeam.alpha, 1.1, .1);
+					if(!this.soundPlay)
+					{
+						//Alien Death Here
+						TGE.Game.GetInstance().audioManager.Play({
+							id : 'hitObstacle_sound',
+							loop : '0'
+						});
+						this.soundPlay = true;
+					}
 				}
 				if(this.rightBeam.alpha >= .7)
 				{
@@ -408,6 +418,7 @@ GameScreen.prototype = {
 
 	EndGame : function() {
 		this.hasEnded = true;
+		TGE.Game.GetInstance().audioManager.StopAll();
 		this.transitionToWindow({
 			windowClass : EndScreen,
 			fadeTime : 1.25,
@@ -604,7 +615,6 @@ GameScreen.prototype = {
 			return;
 		this.mPlaying = false;
 		this.mPlayer.mVerticalSpeed = -3;		
-		TGE.Game.GetInstance().audioManager.StopAll();
 		this.deathCause = cause;
 		//Play sound
 		if(cause == "dark")
@@ -622,9 +632,10 @@ GameScreen.prototype = {
 			this.mPlayer.PlayAnimation("fly");
 			//Alien Death Here
 			TGE.Game.GetInstance().audioManager.Play({
-				id : 'hitObstacle_sound',
+				id : 'AlienFly',
 				loop : '0'
 			});
+			
 		}
 		this.causeOfDeath = cause;
 

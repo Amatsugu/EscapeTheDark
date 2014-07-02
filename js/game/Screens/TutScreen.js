@@ -44,6 +44,14 @@ TutScreen.prototype = {
             image : "cred"
         }));
 
+        this.screens[3] = this.addChild(new TGE.Sprite().setup({
+            x : this.width,
+            y : 0,
+            registrationX : 0,
+            registrationY : 0,
+            image : "cred2"
+        }));
+
         this.addChild(new TGE.Button().setup({
             x : this.width-20-32,
             y : this.height-20-32,

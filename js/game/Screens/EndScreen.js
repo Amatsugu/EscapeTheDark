@@ -21,6 +21,11 @@ EndScreen.prototype = {
                 y : this.percentageOfHeight(0.5),
                 image: "endscreen_background",
             }));
+
+        TGE.Game.GetInstance().audioManager.Play({ 
+                id:'menuMusic', 
+                loop:'1' 
+            });
         
         // Try Again button
         this.addChild(new TGE.Button().setup({
