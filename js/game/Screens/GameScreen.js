@@ -1,6 +1,7 @@
 GameScreen = function(width, height) {
 	GameScreen.superclass.constructor.apply(this, arguments);
-
+	console.log("GameScreen: Init");
+	TGE.Game.GetInstance().audioManager.StopAll();
 	//Stats
 	this.mDistance = 0;
 	this.mCoins = 0;
@@ -23,11 +24,15 @@ GameScreen = function(width, height) {
 	//Obstacle generation parameters
 	this.mLastObstacle = 0;
 	this.alienSpawnChance = 3;
-		
+	
+	console.log("GameScreen: Var Declared");
+
 	// Event listeners
 	this.addEventListener("update", this.Update.bind(this));
 	this.addEventListener("mousedown", this.MouseDown.bind(this));
 	this.addEventListener("keydown", this.KeyInput.bind(this));
+
+	console.log("GameScreen: Event listeners added");
 };
 
 GameScreen.prototype = {
@@ -35,7 +40,7 @@ GameScreen.prototype = {
 	setup : function() {
 		
 		//Setup camera
-		TGE.Game.GetInstance().audioManager.StopAll();
+		
 		TGE.Game.GetInstance().mCameraLocation = new TGE.Point();
 
 		//Setup layers
@@ -73,10 +78,11 @@ GameScreen.prototype = {
 			id:'background_music', 
 			loop:'1' 
 		});
+		console.log("GameScreen: Setup World");
 	},
 
 	Update : function(event) {
-
+		this.ReadNextEvent(event.elapsedTime);
 		if (!this.mPlaying) 
 		{
 			if(this.causeOfDeath == "alien")
@@ -188,7 +194,7 @@ GameScreen.prototype = {
 		
 		//this.mPlayer.hasCollided = false;
 		// Read & make level
-		this.ReadNextEvent(event.elapsedTime);
+		
 		//this.SpawnObstacles(event.elapsedTime);
 		this.GenerateRandom(event.elapsedTime);
 		this.SpawnCoins(event.elapsedTime);
@@ -236,45 +242,6 @@ GameScreen.prototype = {
 			// setting gravity?
 			else if (nextEvent.gravity != null) {
 				this.mPlayer.SetGravity(nextEvent.gravity);
-				this.mEventIndex++;
-			}
-			
-			// making an event?
-			else if (this.mEventTimer >= nextEvent.time) {
-
-				// setting coin frequency?
-				if (nextEvent.event == "coin_frequency") {
-					this.mCoinFrequency = nextEvent.value;
-				}
-				
-				// setting the coin height?
-				else if (nextEvent.event == "coin_height") {
-					this.mCoinHeight = this.height * nextEvent.value;
-				}
-				
-				// starting a coin sine wave?
-				else if (nextEvent.event == "coin_sinewave") {
-					this.mCoinWaveAmplitude = nextEvent.amplitude;
-					this.mCoinWaveFrequency = nextEvent.amplitude == 0 ? 0 : nextEvent.frequency;
-					this.mCoinWaveTimer = 0;
-				}
-				
-				// making a coin box?
-				else if (nextEvent.event == "coin_box"){
-		            this.GenerateCoinBox(nextEvent.size);
-		        }
-				
-				// displaying nothing?
-				else if (nextEvent.event == "nothing") {
-					this.mCoinFrequency = 0;
-				}
-				
-				// ending game?
-				else if (nextEvent.event == "game_finished") {
-					//this.EndGame();
-					this.mEventIndex = 3
-				}
-
 				this.mEventIndex++;
 			}
 		}
@@ -466,6 +433,7 @@ GameScreen.prototype = {
 	},
 	
 	SetupHud : function() {
+
 		// NOTES:
 		// x and y : the x coordinate of the text or image
 		// text : the actual text that will appear on screen
@@ -589,7 +557,7 @@ GameScreen.prototype = {
 	    }));
 
 		this.pauseText.x = (this.width/2)-(this.pauseText.width/2);
-	    
+	    console.log("GameScreen: Rendered HUD");
 	},
 
 	PauseGame : function()

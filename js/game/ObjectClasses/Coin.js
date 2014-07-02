@@ -19,6 +19,7 @@ Coin.prototype = {
 
 	setup : function(params) 
 	{
+		Coin.superclass.setup.call(this,params);
 		if(params.isAlien)
 		{
 			//params.image = "ufo";
@@ -49,7 +50,7 @@ Coin.prototype = {
 		}
 		this.mIsAlien = params.isAlien;
     	this.mGame = params.gameScreen;
-    	Coin.superclass.setup.call(this,params);
+    	this.player = this.mGame.GetPlayer();
     	this.cullToViewport(false,false,false,true);
     	return this;
 	},
@@ -75,10 +76,17 @@ Coin.prototype = {
 
 	DetectCollisions : function(event)
 	{
-		var player = this.mGame.GetPlayer();
-		if(player.worldX < this.worldX - 64 - this.width/2)
+		if(this.worldX+this.width/2 > this.player.mCamDist +this.mGame.width/2)
 			return;
-		var rect2 = new TGE.Rectangle(player.worldX - player.width/2, player.worldY - player.height/2, player.width, player.height);
+		if(this.worldX-this.width/2 < this.player.mCamDist -this.mGame.width/2)
+			return;
+		if(this.player.worldX < this.worldX - 64 - this.width/2)
+			return;
+		if(this.worldX > this.player.worldX + 100)
+			return;
+		if(this.worldY + this.height/2 > this.player.worldY + this.player.height/2)
+			return;
+		var rect2 = new TGE.Rectangle(this.player.worldX - this.player.width/2, this.player.worldY - this.player.height/2, this.player.width, this.player.height);
 		var rect1 = new TGE.Rectangle(this.worldX - this.width/2, this.worldY - this.height/2, this.width, this.height);
 		
 		//console.log(this.width);

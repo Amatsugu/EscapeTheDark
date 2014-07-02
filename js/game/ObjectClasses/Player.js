@@ -175,14 +175,14 @@ Player.prototype = {
 			this.canJump = true;
 			this.PlayAnimation("run");
 		}
-		var playerRect = new TGE.Rectangle(nX-this.width/2, this.mPosition-this.height/2, this.width, this.height);
+		playerRect = new TGE.Rectangle(nX-this.width/2, this.mPosition-this.height/2, this.width, this.height);
 		if(this.checkIntersection(playerRect))
 		{
 			this.mCurSpeed = 0;
 			this.PlayAnimation("idle");
 		}
 
-		var playerRect = new TGE.Rectangle(this.mDistance-this.width/2, this.mPosition-this.height/2, this.width, this.height);
+		playerRect = new TGE.Rectangle(this.mDistance-this.width/2, this.mPosition-this.height/2, this.width, this.height);
 		if(this.checkIntersection(playerRect))
 		{
 			this.mVerticalSpeed = 1;
@@ -218,50 +218,6 @@ Player.prototype = {
 		if(this.colliders.length > 8)
 			this.colliders.splice(0, 1);
 	},
-
-	checkCollision : function(oX,oY,ob, id)
-	{
-		var playerRect = new TGE.Rectangle(this.worldX-50, this.worldY-100, 100, 200);
-		//this.mDebug.text = playerRect.x + "," + this.width;
-		var h = 0;
-		for(var i = 0; i < this.colliders.length; i++)
-		{
-			var curCollider = this.colliders[i];
-			if(this.checkIntersection(curCollider, playerRect))
-			{
-				this.hasCollided = true;
-				var curh = curCollider.y + curCollider.height + this.mOrigGround;
-				if(curh > h)
-					h = curh;
-			}
-			if(playerRect.x >= curCollider.x + 500)
-			{
-				this.colliders.splice(i, 1);
-			}
-		}
-		
-		if(h != 0)
-			this.mGroundHeight = h;
-		if(!this.hasCollided && !this.checkForCollider(playerRect))
-			this.mGroundHeight = this.mOrigGround;
-	},
-
-	checkForCollider : function(rect1)
-	{
-		var ret = false;
-		for(var i = 0; i < this.colliders.length; i++)
-		{
-			rect2 = this.colliders[i];
-			var r1 = rect1.x + rect1.width;
-			var r2 = rect2.x + rect2.width;
-			if((rect1.x >= rect2.x && rect1.x <= r2) || (r1 >= rect2.x && r1 <= r2))
-			{
-				ret = true;
-			}
-		}
-		return ret;
-	},
-
 
 	getGroundHeight : function()
 	{
