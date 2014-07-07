@@ -201,7 +201,10 @@ Player.prototype = {
 		this.mCamDist += this.mCamSpeed; //uses the camera's speed to determine the camera's X position
 		
 		if(this.mPosition <= this.mGroundHeight)
+		{
 			this.canJump = true;
+			this.PlayAnimation("run");
+		}
 		if(((this.mCamDist-2) - this.mGame.width/2) > this.mDistance) //Kill the player if he/she exits on screen left
 		{
 			this.mStopped = true;
